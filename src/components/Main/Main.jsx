@@ -3,14 +3,16 @@ import Menu from '../Menu/Menu.jsx';
 import ProductCard from '../ProductCard/ProductCard.jsx';
 import SeeMore from '../SeeMore/SeeMore.jsx';
 import "./Main.css";
+import Tooltip from "../Tooltip/Tooltip.jsx";
 
 
 const Main = () => {
     return (<main className="main">
             <div className="main__title">Browse our menu</div>
             <div className="main__subtitle common_font">
-                Use our menu to place an order online, or{" "}
-                <a className="highlight">phone</a> our store <br/> to place a pickup
+                Use our menu to place an order online, or {" "}
+                <Tooltip text="Call us: +37067683921">
+                <span className="highlight"> phone</span> </Tooltip> our store <br/> to place a pickup
                 order. Fast and fresh food.
             </div>
 

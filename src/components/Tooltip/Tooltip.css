@@ -1,7 +1,7 @@
 .tooltip {
     position: relative;
     cursor: pointer;
-    display: inline-blockblock;
+    display: inline-block;
 }
 
 .tooltipText{
@@ -14,4 +14,7 @@
     padding: 5px 10px;
     font-size: 14px;
     visibility: hidden;
+}
+.tooltip:hover .tooltipText {
+    visibility: visible;
 }

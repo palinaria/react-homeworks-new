@@ -1,5 +1,5 @@
 import React from 'react';
-import "./style/tooltip.css";
+import "./Tooltip.css";
 
 const Tooltip = ({text,children,component: Component = "span"}) => {
     return (
@@ -12,16 +12,6 @@ const Tooltip = ({text,children,component: Component = "span"}) => {
 
 };
 
-
 export default Tooltip;
 
 
-
-const Main = () => {
-    return (
-        <p>
-            If you want to call us, just <Tooltip text="+375">phone</Tooltip>
-        </p>
-
-    );
-};
