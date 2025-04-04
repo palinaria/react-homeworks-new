@@ -18,10 +18,8 @@ const Header = () => {
                     <a href="#">Login</a>
                 </nav>
                 <div className="cart">
-                    <a href="#" className="cart__button">
-                        <img src={cart} alt="cart" />
-                        <div className="cart__counter">0</div>
-                    </a>
+                    <img src={cart} alt="cart" className="cart__icon" />
+                    <span className="cart__counter">0</span>
                 </div>
             </div>
         </header>

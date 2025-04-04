@@ -24,14 +24,14 @@ const Footer = () => {
                         <a href="#">FAQ</a>
                         <a href="#">Contact</a>
                     </div>
-                    <div className="footer_column">
+                    <div className="footer_column common_font">
                         <p className="footer__column--uppercase">TEMPLATE</p>
                         <a href="#">Style Guide</a>
                         <a href="#">Changelog</a>
                         <a href="#">Licence</a>
                         <a href="#">Webflow University</a>
                     </div>
-                    <div className="footer_column">
+                    <div className="footer_column common_font">
                         <p className="footer__column--uppercase">FLOWBASE</p>
                         <a href="#">More Cloneables</a>
                     </div>
