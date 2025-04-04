@@ -1,11 +1,11 @@
 import React from "react";
 import "./ProductCard.css"
-import product_img from "../../assets/product_img.png"
+import Button from "../Button/Button.jsx";
 
-const ProductCard = ({title, price, description}) => {
+const ProductCard = ({title, price, description,image}) => {
     return (
         <div className="product_card">
-            <img src={product_img} alt="product" className="prod_img" />
+            <img src={image} alt="product" className="prod_img" />
             <div className="product_info">
                 <div className="title_price">
                     <div className="title">{title}</div>
@@ -14,7 +14,7 @@ const ProductCard = ({title, price, description}) => {
                 <div className="description common_font">{description}</div>
                 <div className="add_to_cart">
                     <div className="amount">1</div>
-                    <button className="btn_add_cart btn btn_colored">Add to cart</button>
+                    <Button >Add to cart</Button>
                 </div>
             </div>
         </div>

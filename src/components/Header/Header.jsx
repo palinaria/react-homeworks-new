@@ -3,6 +3,13 @@ import "./Header.css";
 import logo from '../../assets/logo_svg.svg';
 import cart from "../../assets/cart_svg.svg";
 
+const links = [
+    { href: '#', label: 'Home' },
+    { href: '#', label: 'Menu' },
+    { href: '#', label: 'Company' },
+    { href: '#', label: 'Login' },
+];
+
 
 const Header = () => {
     return (
@@ -12,16 +19,13 @@ const Header = () => {
             </div>
             <div className="header_right">
                 <nav className="nav">
-                    <a href="#">Home</a>
-                    <a href="#">Menu</a>
-                    <a href="#">Company</a>
-                    <a href="#">Login</a>
+                    {links.map(link =>(
+                        <a href ={link.href}>{link.label}</a>
+                    ))}
                 </nav>
                 <div className="cart">
-                    <a href="#" className="cart__button">
-                        <img src={cart} alt="cart" />
-                        <div className="cart__counter">0</div>
-                    </a>
+                    <img src={cart} alt="cart" className="cart__icon" />
+                    <span className="cart__counter">0</span>
                 </div>
             </div>
         </header>

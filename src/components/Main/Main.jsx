@@ -1,10 +1,11 @@
 import React from "react";
 import Menu from '../Menu/Menu.jsx';
 import ProductCard from '../ProductCard/ProductCard.jsx';
-import SeeMore from '../SeeMore/SeeMore.jsx';
+import SeeMore from '../Button/Button.jsx';
 import "./Main.css";
 import Tooltip from "../Tooltip/Tooltip.jsx";
-
+import mock from "../../mock.json";
+import Button from "../Button/Button.jsx";
 
 const Main = () => {
     return (<main className="main">
@@ -19,17 +20,18 @@ const Main = () => {
         <Menu/>
 
         <div className="main_menu">
-            {Array.from({length: 6}, (_, index) => (
+            {mock.map((el) => (
                 <ProductCard
-                    index={index}
-                    title="Burger Dreams"
-                    price="9.20"
-                    description="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+                    index={el.id}
+                    title={el.meal}
+                    price={el.price}
+                    description={el.instructions}
+                    image={el.img}
                 />
-            ))}
+            ) )}
         </div>
 
-        <SeeMore/>
+        <Button>See more</Button>
     </main>);
 };
 
