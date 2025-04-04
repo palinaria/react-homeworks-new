@@ -1,25 +1,19 @@
+import React from "react";
+import Header from './components/Header/Header.jsx';
+import Main from './components/Main/Main.jsx';
+import Footer from "./components/Footer/Footer.jsx";
 
-import { useState } from 'react'
-import './App.css'
-
-function App() {
-  const projectInfo = {
-    description: "Project.Palina Dolbik.Have a nice day!"
-  };
+import './App.css';
 
 
-  const items = ["El1", "El2", "El3"];
-
-  return (
-    <div>
-      <h1>{projectInfo.description}</h1>
-      <ul>  
-        {items.map((item, index) => (
-          <li key={index}>{item}</li>
-        ))}
-      </ul>
-    </div>
-  );
-}
+const App = () => {
+    return (
+        <>
+            <Header />
+            <Main/>
+            <Footer/>
+        </>
+    );
+};
 
 export default App;
