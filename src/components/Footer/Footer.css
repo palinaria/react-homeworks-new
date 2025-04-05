@@ -1,0 +1,75 @@
+.footer {
+    background-image: url("/images/footer_font.png");
+    background-size: cover;
+    padding: 100px 120px;
+}
+
+.footer .container_up {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 100px;
+}
+
+.footer_column {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+.footer_down_right {
+    align-items: center;
+    display: flex;
+    gap: 24px;
+}
+
+.footer_icon {
+    height: 40px;
+    width: 40px;
+}
+
+.footer_logo {
+    margin-bottom: 25px;
+}
+
+.footer_up_right {
+    display: flex;
+    gap: 126px;
+}
+
+.line {
+    background-color: #7E828F17;
+    height: 1px;
+    margin-bottom: 72px;
+}
+
+.takeaway_text {
+    color: #546285;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0.36px;
+    line-height: 27px;
+    margin-bottom: 100px;
+    max-width: 246px;
+}
+
+.common_font a{
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.32px;
+    color: #546285;
+}
+
+.footer__column--uppercase{
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 20px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: black;
+}
+
+.container_down {
+    display: flex;
+    justify-content: space-between;
+}

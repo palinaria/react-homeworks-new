@@ -1,0 +1,44 @@
+[
+  {
+    "id": "52767",
+    "meal": "Bakewell tart",
+    "instructions": "To make the pastry, measure the flour into a bowl and rub in the butter... Bake for about 35 minutes. If the almonds seem to be browning too quickly, cover the tart loosely with foil.",
+    "img": "https://www.themealdb.com/images/media/meals/wyrqqq1468233628.jpg",
+    "price": 7.22
+  },
+  {
+    "id": "52792",
+    "meal": "Bread and Butter Pudding",
+    "instructions": "Grease a 1 litre/2 pint pie dish with butter... Place the dish into the oven and bake for 30-40 minutes, or until the custard has set and the top is golden-brown.",
+    "img": "https://www.themealdb.com/images/media/meals/xqwwpy1483908697.jpg",
+    "price": 10.18
+  },
+  {
+    "id": "52803",
+    "meal": "Beef Wellington",
+    "instructions": "Put the mushrooms into a food processor... Bake for 20 minutes, then lower the oven setting to 180C and cook for another 15 mins. Allow to rest before slicing.",
+    "img": "https://www.themealdb.com/images/media/meals/vvpprx1487325699.jpg",
+    "price": 12.86
+  },
+  {
+    "id": "52807",
+    "meal": "Baingan Bharta",
+    "instructions": "Rinse the eggplant and roast it on an open flame... Stir and sauté for some more 4 to 5 minutes more. Garnish with coriander leaves.",
+    "img": "https://www.themealdb.com/images/media/meals/urtpqw1487341253.jpg",
+    "price": 14.95
+  },
+  {
+    "id": "52812",
+    "meal": "Beef Brisket Pot Roast",
+    "instructions": "Prepare the brisket and sear it... Slice the meat across the grain and serve with vegetables and gravy.",
+    "img": "https://www.themealdb.com/images/media/meals/ursuup1487348423.jpg",
+    "price": 7.6
+  },
+  {
+    "id": "52824",
+    "meal": "Beef Sunday Roast",
+    "instructions": "Cook the broccoli and carrots... Serve with Yorkshire puddings, gravy, and roast potatoes.",
+    "img": "https://www.themealdb.com/images/media/meals/ssrrrs1503664277.jpg",
+    "price": 12.19
+  }
+]
