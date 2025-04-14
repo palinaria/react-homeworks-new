@@ -10,6 +10,7 @@ class Main extends Component {
         super(props);
         this.state = {
             menuItems: [],
+            visibleCount: 6,
         };
     }
 
@@ -27,8 +28,16 @@ class Main extends Component {
         }
     }
 
+    handleSeeMore = () => {
+        this.setState((prevState) => ({
+            visibleCount: prevState.visibleCount + 6,
+        }));
+    };
+
     render() {
-        const { menuItems } = this.state;
+        const { menuItems, visibleCount } = this.state;
+        const visibleItems = menuItems.slice(0, visibleCount); //блюда,которые показываются сейчас,от 0 до 6
+        const hasMoreItems = visibleCount < menuItems.length;//проверочка
 
         return (
             <main className="main">
@@ -44,7 +53,7 @@ class Main extends Component {
                 <Menu />
 
                 <div className="main_menu">
-                    {menuItems.map((el) => (
+                    {visibleItems.map((el) => (
                         <ProductCard
                             key={el.id}
                             index={el.id}
@@ -56,7 +65,11 @@ class Main extends Component {
                     ))}
                 </div>
 
-                <Button>See more</Button>
+                {hasMoreItems && ( //условие ,если hasMoreItems===true
+                    <Button type="btn__primary" onClick={this.handleSeeMore}>
+                        See more
+                    </Button>
+                )}
             </main>
         );
     }
