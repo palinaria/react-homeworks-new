@@ -17,7 +17,7 @@ class ProductCard extends Component {
                     <div className="description common_font">{description}</div>
                     <div className="add_to_cart">
                         <div className="amount">1</div>
-                        <Button>Add to cart</Button>
+                        <Button onClick = {() => onAdd({title, price, description, image})}>Add to cart</Button>
                     </div>
                 </div>
             </div>

@@ -34,10 +34,13 @@ class Main extends Component {
         }));
     };
 
+
+
     render() {
         const { menuItems, visibleCount } = this.state;
         const visibleItems = menuItems.slice(0, visibleCount); //блюда,которые показываются сейчас,от 0 до 6
         const hasMoreItems = visibleCount < menuItems.length;//проверочка
+
 
         return (
             <main className="main">
@@ -61,6 +64,7 @@ class Main extends Component {
                             price={el.price}
                             description={el.instructions}
                             image={el.img}
+                            onAdd={this.props.onAddToCart}
                         />
                     ))}
                 </div>

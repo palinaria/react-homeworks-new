@@ -1,8 +1,6 @@
 .main {
     align-items: center;
-    background-image: url("../images/main_font.png");
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-color: #F5FBFC;
     display: flex;
     flex-direction: column;
     padding: 140px 120px;

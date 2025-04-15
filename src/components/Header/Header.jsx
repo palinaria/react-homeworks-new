@@ -3,6 +3,7 @@ import "./Header.css";
 import logo from '../../assets/logo_svg.svg';
 import cart from "../../assets/cart_svg.svg";
 
+
 const links = [
     { href: '#', label: 'Home' },
     { href: '#', label: 'Menu' },
@@ -11,9 +12,13 @@ const links = [
 ];
 
 class Header extends Component {
+
     render() {
+        const {cardItems} = this.props;
         return (
+
             <header className="header font">
+                <div className = "extra_element"></div>
                 <div className="header_left">
                     <img src={logo} alt="logo" />
                 </div>
@@ -25,7 +30,7 @@ class Header extends Component {
                     </nav>
                     <div className="cart">
                         <img src={cart} alt="cart" className="cart__icon" />
-                        <span className="cart__counter">0</span>
+                        <span className="cart__counter">{cardItems?.length || 0}</span>
                     </div>
                 </div>
             </header>
