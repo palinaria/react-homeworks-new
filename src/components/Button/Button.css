@@ -1,0 +1,38 @@
+
+.btn {
+    align-items: center;
+    background-color: transparent;
+    border: 1px solid #61728333;
+    border-radius: 6px;
+    color: black;
+    display: flex;
+    font-size: 16px;
+    font-weight: 400;
+    height: 52px;
+    justify-content: center;
+    letter-spacing: 0;
+    line-height: 20px;
+    width: 147px;
+}
+
+
+
+.btn__primary {
+    background-color: #35B8BE;
+    color: white;
+}
+
+.btn__primary:hover {
+    background-color: #06b8c260;
+}
+
+.btn__secondary  {
+    background-color: transparent;
+    color:#222;
+}
+
+.btn__secondary:hover {
+    background-color: #35B8BE;
+    color: white;
+
+}
