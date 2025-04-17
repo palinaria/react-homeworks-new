@@ -14,7 +14,6 @@ const links = [
 class Header extends Component {
 
     render() {
-        const {cardItems} = this.props;
         return (
 
             <header className="header font">
@@ -30,7 +29,7 @@ class Header extends Component {
                     </nav>
                     <div className="cart">
                         <img src={cart} alt="cart" className="cart__icon" />
-                        <span className="cart__counter">{cardItems?.length || 0}</span>
+                        <span className="cart__counter">{this.props.totalQuantity}</span>
                     </div>
                 </div>
             </header>

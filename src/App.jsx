@@ -7,17 +7,32 @@ import './App.css';
 
 
 const App = () => {
-    const [cartItems, setCartItems] = useState([]);//хранит
+    const [cartItems, setCartItems] = useState({});//хранит
+    const[totalQuantity, setTotalQuantity] = useState(0);
 
-   const handleAddToCart = (product) => {
-       setCartItems((prevState) => [...prevState, product]); //добавляет продукты
-        //прокидывать инфо выше о продуктк
+    const handleAddToCart = (product) => {
+        setCartItems((prevState) => {
+            if (prevState[product.id]) {
+                return {
+                    ...prevState,
+                    [product.id]: {
+                        ...prevState[product.id],
+                        quantity: prevState[product.id].quantity + product.quantity
+                    }
+                } }
+            else
+                {
+                    return {...prevState, [product.id]: product};
+                }
+
+        });
+        setTotalQuantity((prevState) => prevState + +product.quantity )
     }
 
     return (
         <>
-            <Header cartItems={cartItems} />
-            <Main onAddToCart={handleAddToCart} />
+            <Header totalQuantity ={totalQuantity}/>
+            <Main onAddToCart={handleAddToCart}/>
             <Footer/>
         </>
     );

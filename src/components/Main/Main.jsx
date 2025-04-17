@@ -58,6 +58,7 @@ class Main extends Component {
                 <div className="main_menu">
                     {visibleItems.map((el) => (
                         <ProductCard
+                            productId={el.id}
                             key={el.id}
                             index={el.id}
                             title={el.meal}
