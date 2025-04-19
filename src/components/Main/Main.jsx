@@ -5,12 +5,15 @@ import "./Main.css";
 import Tooltip from "../Tooltip/Tooltip.jsx";
 import Button from "../Button/Button.jsx";
 
+
+const visible_items_count = 6;
+
 class Main extends Component {
     constructor(props) {
         super(props);
         this.state = {
             menuItems: [],
-            visibleCount: 6,
+            visibleCount: visible_items_count,
         };
     }
 
@@ -30,7 +33,7 @@ class Main extends Component {
 
     handleSeeMore = () => {
         this.setState((prevState) => ({
-            visibleCount: prevState.visibleCount + 6,
+            visibleCount: prevState.visibleCount + visible_items_count,
         }));
     };
 
@@ -38,8 +41,8 @@ class Main extends Component {
 
     render() {
         const { menuItems, visibleCount } = this.state;
-        const visibleItems = menuItems.slice(0, visibleCount); //блюда,которые показываются сейчас,от 0 до 6
-        const hasMoreItems = visibleCount < menuItems.length;//проверочка
+        const visibleItems = menuItems.slice(0, visibleCount);
+        const hasMoreItems = visibleCount < menuItems.length;
 
 
         return (
@@ -70,7 +73,7 @@ class Main extends Component {
                     ))}
                 </div>
 
-                {hasMoreItems && ( //условие ,если hasMoreItems===true
+                {hasMoreItems && (
                     <Button type="btn__primary" onClick={this.handleSeeMore}>
                         See more
                     </Button>
