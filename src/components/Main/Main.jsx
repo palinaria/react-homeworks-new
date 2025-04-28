@@ -11,6 +11,8 @@ const visible_items_count = 6;
 const Main = ({ onAddToCart }) => {
     const [menuItems, setMenuItems] = useState([]);
     const [visibleCount, setVisibleCount] = useState(visible_items_count);
+    const[selectedCategory, setSelectedCategory] = useState("Dessert");
+
 
     useEffect(() => {
         const fetchItems = async () => {
@@ -29,9 +31,16 @@ const Main = ({ onAddToCart }) => {
     const handleSeeMore = () => {
         setVisibleCount((prev) => prev + visible_items_count);
     };
+    const handleCategoryClick = (category) => {
+        setSelectedCategory(category); //запомнить, какую категорию выбрал пользователь
+        setVisibleCount(visible_items_count);
+    };
 
-    const visibleItems = menuItems.slice(0, visibleCount);
-    const hasMoreItems = visibleCount < menuItems.length;
+
+    const filteredItems = menuItems.filter(item => item.category === selectedCategory);
+
+    const visibleItems = filteredItems.slice(0, visibleCount);
+    const hasMoreItems = visibleCount < filteredItems.length;
 
     return (
         <main className="main">
@@ -44,7 +53,7 @@ const Main = ({ onAddToCart }) => {
                 our store <br /> to place a pickup order. Fast and fresh food.
             </div>
 
-            <Menu />
+            <Menu onCategoryClick={handleCategoryClick}  selectedCategory={selectedCategory} />
 
             <div className="main_menu">
                 {visibleItems.map((el) => (
