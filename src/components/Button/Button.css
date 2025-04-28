@@ -22,17 +22,17 @@
     color: white;
 }
 
-.btn__primary:hover {
+/*.btn__primary:hover {
     background-color: #06b8c260;
 }
-
+*/
 .btn__secondary  {
     background-color: transparent;
     color:#222;
 }
 
-.btn__secondary:hover {
+/*.btn__secondary:hover {
     background-color: #35B8BE;
     color: white;
 
-}
+}*/
