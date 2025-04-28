@@ -32,7 +32,7 @@ const Main = ({ onAddToCart }) => {
         setVisibleCount((prev) => prev + visible_items_count);
     };
     const handleCategoryClick = (category) => {
-        setSelectedCategory(category); //запомнить, какую категорию выбрал пользователь
+        setSelectedCategory(category);
         setVisibleCount(visible_items_count);
     };
 
