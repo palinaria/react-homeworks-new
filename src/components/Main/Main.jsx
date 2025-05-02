@@ -4,6 +4,7 @@ import ProductCard from '../ProductCard/ProductCard.jsx';
 import "./Main.css";
 import Tooltip from "../Tooltip/Tooltip.jsx";
 import Button from "../Button/Button.jsx";
+import useFetch from "../../Hooks/useFetch/useFetch.js";
 
 
 const visible_items_count = 6;
@@ -27,6 +28,8 @@ const Main = ({ onAddToCart }) => {
 
         fetchItems();
     }, []);
+
+    useFetch("https://65de35f3dccfcd562f5691bb.mockapi.io/api/v1/meals")
 
     const handleSeeMore = () => {
         setVisibleCount((prev) => prev + visible_items_count);
@@ -77,6 +80,6 @@ const Main = ({ onAddToCart }) => {
             )}
         </main>
     );
-};
+}
 
 export default Main;
