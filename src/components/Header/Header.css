@@ -6,7 +6,19 @@
     justify-content: space-between;
     padding: 0 120px;
     width: 100%;
+
+    }
+
+.extra_element{
+    position:absolute;
+    top:96px;
+    left:0;
+    width:0;
+    height: 0;
+    border-right:99vw solid transparent;
+    border-top:64px solid #FFFFFF;
 }
+
 
 .header_right {
     align-items: center;

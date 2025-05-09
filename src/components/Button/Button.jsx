@@ -1,10 +1,14 @@
-import React from "react"
-import  "./Button.css"
+import React, { Component } from "react";
+import "./Button.css";
 
-const Button = ({children,type = "btn__primary"}) => {
-    return (
-            <button className={`btn ${type}`}>{children}</button> //btn-всегда ,btn__primary-по умолч,или указанный type
-    );
-};
+class Button extends Component {
+    render() {
+        const { children, type = "btn__primary",onClick } = this.props;
 
-export default  Button;
+        return (
+            <button className={`btn ${type}`} onClick={onClick}>{children}</button>
+        );
+    }
+}
+
+export default Button;
