@@ -2,8 +2,7 @@ import React from 'react';
 import "./Menu.css";
 import Button from "../Button/Button.jsx";
 
-const Menu = ({ onCategoryClick, selectedCategory }) => {
-    const categories = ['Dessert', 'Dinner', 'Breakfast'];
+const Menu = ({categories, onCategoryClick, selectedCategory }) => {
 
     return (
         <div className="main_to_choose_container">

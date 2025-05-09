@@ -44,9 +44,11 @@ const Main = ({ onAddToCart }) => {
 
 
     const filteredItems = menuItems.filter(item => item.category === selectedCategory);
-
     const visibleItems = filteredItems.slice(0, visibleCount);
     const hasMoreItems = visibleCount < filteredItems.length;
+    const categories = [...new Set(menuItems.map(item => item.category))];
+
+
 
     return (
         <main className="main">
@@ -59,7 +61,7 @@ const Main = ({ onAddToCart }) => {
                 our store <br /> to place a pickup order. Fast and fresh food.
             </div>
 
-            <Menu onCategoryClick={handleCategoryClick}  selectedCategory={selectedCategory} />
+            <Menu categories = {categories} onCategoryClick={handleCategoryClick}  selectedCategory={selectedCategory} />
 
             <div className="main_menu">
                 {visibleItems.map((el) => (
