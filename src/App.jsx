@@ -1,58 +1,46 @@
-import React, {Component} from "react";
+import React, {useState} from "react";
 import Header from './components/Header/Header.jsx';
 import Main from './components/Main/Main.jsx';
 import Footer from "./components/Footer/Footer.jsx";
 
 import './App.css';
 
+const App = () => {
+    const [cartItems, setCartItems] = useState({});
+    const [totalQuantity, setTotalQuantity] = useState(0);
 
-import './App.css';
+    const handleAddToCart = (product) => {
+        const productId = product.id;
+        const productQuantity = Number(product.quantity);
 
-class App extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            cartItems: {},
-            totalQuantity: 0,
-        };
-    }
-
-    handleAddToCart = (product) => {
-        this.setState((prevState) => {
-            const updatedCartItems = { ...prevState.cartItems };
-            const productId = product.id;
-            const productQuantity = Number(product.quantity);
-
-            if (updatedCartItems[productId]) {
-                updatedCartItems[productId] = {
-                    ...updatedCartItems[productId],
-                    quantity: updatedCartItems[productId].quantity + productQuantity
+        setCartItems(prevItems => {
+            const updatedItems = { ...prevItems };
+            if (updatedItems[productId]) {
+                updatedItems[productId] = {
+                    ...updatedItems[productId],
+                    quantity: updatedItems[productId].quantity + productQuantity
                 };
             } else {
-                updatedCartItems[productId] = {
+                updatedItems[productId] = {
                     ...product,
                     quantity: productQuantity
                 };
             }
-
-            return {
-                cartItems: updatedCartItems,
-                totalQuantity: prevState.totalQuantity + productQuantity
-            };
+            return updatedItems;
         });
+
+        setTotalQuantity(prevQuantity => prevQuantity + productQuantity);
     };
 
-    render() {
-        const { totalQuantity } = this.state;
-
-        return (
-            <>
-                <Header totalQuantity={totalQuantity} />
-                <Main onAddToCart={this.handleAddToCart} />
-                <Footer />
-            </>
-        );
-    }
-}
+    return (
+        <>
+            <Header totalQuantity={totalQuantity} />
+            <Main onAddToCart={handleAddToCart} />
+            <Footer />
+        </>
+    );
+};
 
 export default App;
+
+

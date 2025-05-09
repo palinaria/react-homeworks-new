@@ -1,17 +1,23 @@
-import React, { Component } from 'react';
+import React from 'react';
 import "./Menu.css";
 import Button from "../Button/Button.jsx";
 
-class Menu extends Component {
-    render() {
-        return (
-            <div className="main_to_choose_container">
-                <Button type="btn__secondary">Dessert</Button>
-                <Button type="btn__secondary">Dinner</Button>
-                <Button type="btn__secondary">Breakfast</Button>
-            </div>
-        );
-    }
-}
+const Menu = ({ onCategoryClick, selectedCategory }) => {
+    const categories = ['Dessert', 'Dinner', 'Breakfast'];
+
+    return (
+        <div className="main_to_choose_container">
+            {categories.map((category) => (
+                <Button
+                    key={category}
+                    type={selectedCategory === category ? "btn__primary" : "btn__secondary"}
+                    onClick={() => onCategoryClick(category)}
+                >
+                    {category}
+                </Button>
+            ))}
+        </div>
+    );
+};
 
 export default Menu;
