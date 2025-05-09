@@ -1,0 +1,67 @@
+
+
+.homeMain {
+    background-image: url("/images/homePage_font.png");
+    background-size: cover;
+    padding: 100px 120px;
+    display: flex;
+    gap: 32px;
+    align-items: center;
+}
+
+.highlight{
+    color: #35B8BE;
+}
+
+
+.homeMain_title{
+    margin-bottom: 26px;
+}
+
+.common_font {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.32px;
+    color: #546285;
+}
+
+.sub_title{
+    max-width:540px;
+   margin-bottom: 52px;
+}
+
+.title_font{
+    font-weight: 400;
+    font-size: 60px;
+    line-height: 60px;
+    letter-spacing: 1.8px;
+
+}
+
+.trustpilot_container{
+    display: flex;
+    align-items: flex-end;
+    gap:2px;
+    margin-bottom: 10px;
+}
+
+.trustpilot{
+    width: 82 px;
+    height: 18px;
+    top: 9.57px;
+    left: 28.89px;
+    color:#000000;
+}
+
+.rating{
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0%;
+    color:#08090A;
+}
+
+.btn_homeMain{
+    margin-bottom: 40px;
+}

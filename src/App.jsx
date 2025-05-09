@@ -1,9 +1,15 @@
 import React, {useState} from "react";
-import Header from './components/Header/Header.jsx';
-import Main from './components/Main/Main.jsx';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import './App.css';
+
+import MenuPage from "./pages/MenuPage/MenuPage.jsx"
+import HomeMainPage from "./pages/HomeMainPage/HomeMainPage.jsx"
+import Header from "./components/Header/Header.jsx";
 import Footer from "./components/Footer/Footer.jsx";
 
-import './App.css';
+
+
+
 
 const App = () => {
     const [cartItems, setCartItems] = useState({});
@@ -33,11 +39,16 @@ const App = () => {
     };
 
     return (
-        <>
+        <Router>
             <Header totalQuantity={totalQuantity} />
-            <Main onAddToCart={handleAddToCart} />
+            <main>
+                <Routes>
+                    <Route path="/" element={<HomeMainPage />} />
+                    <Route path="/menu" element={<MenuPage onAddToCart={handleAddToCart} totalQuantity={totalQuantity} />} />
+                </Routes>
+            </main>
             <Footer />
-        </>
+        </Router>
     );
 };
 

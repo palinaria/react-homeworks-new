@@ -1,14 +1,15 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import "./Header.css";
 import logo from '../../assets/logo_svg.svg';
 import cart from "../../assets/cart_svg.svg";
 
 
 const links = [
-    { href: '#', label: 'Home' },
-    { href: '#', label: 'Menu' },
-    { href: '#', label: 'Company' },
-    { href: '#', label: 'Login' },
+    { to: '/', label: 'Home' },
+    { to: '/menu', label: 'Menu' },
+    { to: '/company', label: 'Company' },  // Замените на правильный маршрут, если есть
+    { to: '/login', label: 'Login' },
 ];
 
 const Header = ({ totalQuantity }) => {
@@ -21,7 +22,13 @@ const Header = ({ totalQuantity }) => {
             <div className="header_right">
                 <nav className="nav">
                     {links.map(link => (
-                        <a key={link.label} href={link.href}>{link.label}</a>
+                        <NavLink
+                            key={link.label}
+                            to={link.to}
+                            className={({ isActive }) => isActive ? 'active-link' : ''}
+                        >
+                            {link.label}
+                        </NavLink>
                     ))}
                 </nav>
                 <div className="cart">
@@ -32,5 +39,4 @@ const Header = ({ totalQuantity }) => {
         </header>
     );
 };
-
 export default Header;

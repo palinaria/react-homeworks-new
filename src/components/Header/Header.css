@@ -44,6 +44,10 @@ a:hover {
     color: #35B8BE;
 }
 
+.active-link {
+    color: #35B8BE;
+}
+
 .cart{
     position: relative;
     width: 50px;

@@ -16,6 +16,10 @@
 }
 
 
+.btn--large {
+    width: 193px;
+    height: 60px;
+}
 
 .btn__primary {
     background-color: #35B8BE;
