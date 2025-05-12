@@ -4,6 +4,7 @@ import ProductCard from '../ProductCard/ProductCard.jsx';
 import "./Main.css";
 import Tooltip from "../Tooltip/Tooltip.jsx";
 import Button from "../Button/Button.jsx";
+import useFetch from "../../Hooks/useFetch/useFetch.js";
 
 
 const visible_items_count = 6;
@@ -18,6 +19,9 @@ const Main = ({ onAddToCart }) => {
         const fetchItems = async () => {
             try {
                 const response = await fetch("https://65de35f3dccfcd562f5691bb.mockapi.io/api/v1/meals");
+                if(!response.ok) {
+                    throw new Error(`Failed to fetch data.Status:${response.status}`);
+                }
                 const result = await response.json();
                 setMenuItems(result);
             } catch (error) {
@@ -27,6 +31,8 @@ const Main = ({ onAddToCart }) => {
 
         fetchItems();
     }, []);
+
+    useFetch("https://65de35f3dccfcd562f5691bb.mockapi.io/api/v1/meals")
 
     const handleSeeMore = () => {
         setVisibleCount((prev) => prev + visible_items_count);
@@ -38,9 +44,11 @@ const Main = ({ onAddToCart }) => {
 
 
     const filteredItems = menuItems.filter(item => item.category === selectedCategory);
-
     const visibleItems = filteredItems.slice(0, visibleCount);
     const hasMoreItems = visibleCount < filteredItems.length;
+    const categories = [...new Set(menuItems.map(item => item.category))];
+
+
 
     return (
         <main className="main">
@@ -53,7 +61,7 @@ const Main = ({ onAddToCart }) => {
                 our store <br /> to place a pickup order. Fast and fresh food.
             </div>
 
-            <Menu onCategoryClick={handleCategoryClick}  selectedCategory={selectedCategory} />
+            <Menu categories = {categories} onCategoryClick={handleCategoryClick}  selectedCategory={selectedCategory} />
 
             <div className="main_menu">
                 {visibleItems.map((el) => (
@@ -77,6 +85,6 @@ const Main = ({ onAddToCart }) => {
             )}
         </main>
     );
-};
+}
 
 export default Main;
