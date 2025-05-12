@@ -1,3 +1,36 @@
 .login{
-background-color:#F5FBFC;
+    background-color:#F5FBFC;
+    padding-top: 156px;
+    padding-right: 378px;
+    padding-left: 378px;
+    padding-bottom:254px;
+}
+
+.login_title{
+    text-align: center;
+    font-weight: 400;
+    font-size: 50px;
+    line-height: 55px;
+    letter-spacing: 1.65px;
+    color:#35B8BE;
+    margin-bottom:54px;
+}
+
+.login_content{
+    width:695px;
+    height:284px;
+    background-color: #FFFFFF;
+    padding-top: 36px;
+    padding-right: 68px;
+    padding-left: 68px;
+    padding-bottom: 42px;
+
+}
+
+.label{
+    width: 100px;
+    height: 20px;
+    top: 312.91px;
+    left: 325px;
+
 }
