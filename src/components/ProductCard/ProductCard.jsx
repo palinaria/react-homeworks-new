@@ -21,7 +21,6 @@ const ProductCard = ({ productId, title, price, description, image, onAdd }) => 
                         type="number"
                         defaultValue="1"
                         min="1"
-                        className="amount"
                         size = "small"
                         ref={inputRef}
                     />
