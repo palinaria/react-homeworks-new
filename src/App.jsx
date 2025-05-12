@@ -6,6 +6,7 @@ import MenuPage from "./pages/MenuPage/MenuPage.jsx"
 import HomeMainPage from "./pages/HomeMainPage/HomeMainPage.jsx"
 import Header from "./components/Header/Header.jsx";
 import Footer from "./components/Footer/Footer.jsx";
+import LoginPage from "./pages/LoginPage/LoginPage.jsx";
 
 
 
@@ -45,6 +46,7 @@ const App = () => {
                 <Routes>
                     <Route path="/" element={<HomeMainPage />} />
                     <Route path="/menu" element={<MenuPage onAddToCart={handleAddToCart} totalQuantity={totalQuantity} />} />
+                    <Route path = "/login" element={<LoginPage />} />
                 </Routes>
             </main>
             <Footer />
