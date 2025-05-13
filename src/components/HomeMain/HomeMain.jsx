@@ -64,7 +64,7 @@ const HomeMain = () => {
                     text ever since the 1500.
                 </SubTitle>
                 <ButtonWrapper>
-                <Button type="btn__primary btn--large ">Place an Order</Button>
+                <Button variant="btn__primary btn--large ">Place an Order</Button>
                 </ButtonWrapper>
             <Rating/>
             </InfoBlock>

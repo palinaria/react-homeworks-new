@@ -9,7 +9,7 @@ const Menu = ({categories, onCategoryClick, selectedCategory }) => {
             {categories.map((category) => (
                 <Button
                     key={category}
-                    type={selectedCategory === category ? "btn__primary" : "btn__secondary"}
+                    variant={selectedCategory === category ? "btn__primary" : "btn__secondary"}
                     onClick={() => onCategoryClick(category)}
                 >
                     {category}
