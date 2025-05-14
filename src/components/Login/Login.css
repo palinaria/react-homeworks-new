@@ -1,9 +1,11 @@
 .login{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding-top: 6%;
     background-color:#F5FBFC;
-    padding-top: 156px;
-    padding-right: 378px;
-    padding-left: 378px;
-    padding-bottom:254px;
+
 }
 
 .login_title{
@@ -39,7 +41,6 @@ label{
 }
 
 span{
-    width:100px;
     text-align: left;
 }
 
@@ -47,4 +48,9 @@ span{
     display: flex;
     gap:30px;
     justify-content: center;
+}
+
+.label{
+    display: flex;
+    justify-content: space-between;
 }

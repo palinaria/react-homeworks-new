@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState,useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import "./Login.css"
 import Input from "/src/components/Input/Input.jsx"
@@ -14,10 +14,18 @@ const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
+    const [isFormValid, setIsFormValid] = useState(false);
+
+    useEffect(() => {
+        setIsFormValid(email.trim() !== "" && password.trim() !== "")
+    },[email, password]);
+
 
     const navigate = useNavigate();
 
-    const isFormValid = email.trim() !== "" && password.trim() !== "";
+
+
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -57,9 +65,8 @@ const Login = () => {
         <div className="login">
             <div className="login_title">Log in</div>
             <form className="login_content" onSubmit={handleSubmit}>
-                <div className="user_name">
-                    <label>
-                        <span>Email</span>
+                    <label className="label">
+                        Email
                         <Input
                             type="email"
                             name="email"
@@ -69,10 +76,8 @@ const Login = () => {
                             onChange={(e) => setEmail(e.target.value)}
                         />
                     </label>
-                </div>
-                <div className="password">
-                    <label>
-                        <span>Password</span>
+                    <label className="label">
+                        Password
                         <Input
                             type="password"
                             name="password"
@@ -82,12 +87,10 @@ const Login = () => {
                             onChange={(e) => setPassword(e.target.value)}
                         />
                     </label>
-                </div>
                 {error && <p style={{ color: "red" }}>{error}</p>}
                 <div className="login_button_container">
                     <Button
                         type="submit"
-                        variant={isFormValid ? "btn__primary" : "btn__secondary"}
                         disabled={!isFormValid}
                     >
                         Submit

@@ -55,7 +55,6 @@ const App = () => {
                 <Routes>
                     <Route path="/" element={user ? <HomeMainPage /> : <Navigate to="/login" />} />
                     <Route path="/menu" element={user ? <MenuPage onAddToCart={handleAddToCart} totalQuantity={totalQuantity} /> : <Navigate to="/login" />} />
-                    <Route path="/company" element={user ? <CompanyPage /> : <Navigate to="/login" />} />
                     <Route path="/login" element={user ? <Navigate to="/menu" /> : <LoginPage />} />
                 </Routes>
             </main>
