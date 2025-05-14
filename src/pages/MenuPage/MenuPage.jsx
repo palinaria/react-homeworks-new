@@ -6,7 +6,7 @@ import Main from '/src/components/Main/Main.jsx'
 
 const MenuPage = ({ onAddToCart, totalQuantity }) => {
     return  <main>
-        <Main onAddToCart={onAddToCart} totalQuantity={totalQuantity} />;
+        <Main onAddToCart={onAddToCart} totalQuantity={totalQuantity} />
     </main>
 
 };
