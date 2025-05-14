@@ -1,6 +1,6 @@
 import React from 'react';
 import Main from '/src/components/Main/Main.jsx'
-import HomeMain from "../../components/HomeMain/HomeMain.jsx";
+
 
 
 

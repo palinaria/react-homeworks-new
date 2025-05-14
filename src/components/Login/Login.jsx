@@ -1,46 +1,55 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
+import { useNavigate } from "react-router-dom";
 import "./Login.css"
 import Input from "/src/components/Input/Input.jsx"
 import Button from "../Button/Button.jsx";
+import { auth } from "/src/firebase/firebase.js";
+import {
+    signInWithEmailAndPassword,
+    createUserWithEmailAndPassword
+} from "firebase/auth";
+
 
 const Login = () => {
-    const[username, setUsername] = useState("");
-    const[password,setPassword] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
 
-    const isFormValid = username.trim() !== "" && password.trim() !== "";
+    const navigate = useNavigate();
 
-    useEffect(() => {
-        if (!localStorage.getItem("users")) {
-            localStorage.setItem("users", JSON.stringify([])); // Инициализация пустого списка пользователей
-        }
-    }, []);
+    const isFormValid = email.trim() !== "" && password.trim() !== "";
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (!isFormValid) return;
 
-        const users = JSON.parse(localStorage.getItem("users")) || [];
+        try {
 
-        const existingUser = users.find(
-            (user) => user.username === username
-        );
+            await signInWithEmailAndPassword(auth, email, password);
+            alert("Welcome back!");
+            navigate("/");
+        } catch (loginError) {
+            if (loginError.code === "auth/user-not-found") {
 
-        if (existingUser) {
-            if (existingUser.password === password) {
-                localStorage.setItem("currentUser", JSON.stringify(existingUser));
-                alert("Welcome back!");
-                window.location.href = "/menu";
-            } else {
+                try {
+                    await createUserWithEmailAndPassword(auth, email, password);
+                    alert("User registered and logged in!");
+                    navigate("/");
+                } catch (registerError) {
+                    setError(registerError.message);
+                }
+            } else if (loginError.code === "auth/wrong-password") {
                 alert("Wrong password.");
+            } else {
+                setError(loginError.message);
             }
-        } else {
-            const newUser = { username, password };
-            const updatedUsers = [...users, newUser];
-            localStorage.setItem("users", JSON.stringify(updatedUsers));
-            localStorage.setItem("currentUser", JSON.stringify(newUser));
-            alert("User registered and logged in!");
-            window.location.href = "/menu";
         }
+    };
+
+    const handleCancel = () => {
+        setEmail("");
+        setPassword("");
+        setError("");
     };
 
 
@@ -50,14 +59,14 @@ const Login = () => {
             <form className="login_content" onSubmit={handleSubmit}>
                 <div className="user_name">
                     <label>
-                        <span>User Name</span>
+                        <span>Email</span>
                         <Input
-                            type="text"
-                            name="username"
-                            placeholder="Enter your username"
-                            value={username}
+                            type="email"
+                            name="email"
+                            placeholder="Enter your email"
+                            value={email}
                             size="medium"
-                            onChange={(e) => setUsername(e.target.value)}
+                            onChange={(e) => setEmail(e.target.value)}
                         />
                     </label>
                 </div>
@@ -74,6 +83,7 @@ const Login = () => {
                         />
                     </label>
                 </div>
+                {error && <p style={{ color: "red" }}>{error}</p>}
                 <div className="login_button_container">
                     <Button
                         type="submit"
@@ -82,12 +92,16 @@ const Login = () => {
                     >
                         Submit
                     </Button>
-                    <Button type="button" variant="btn__secondary" onClick={handleCancel}>Cancel</Button>
+                    <Button type="button" variant="btn__secondary" onClick={handleCancel}>
+                        Cancel
+                    </Button>
                 </div>
             </form>
         </div>
     );
 };
+
+
 
 export default Login;
 
