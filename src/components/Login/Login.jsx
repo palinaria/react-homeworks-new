@@ -6,6 +6,8 @@ import Button from "../Button/Button.jsx";
 import { auth } from "/src/firebase/firebase.js";
 import {
     signInWithEmailAndPassword,
+    signOut,
+    onAuthStateChanged
 } from "firebase/auth";
 
 
@@ -15,7 +17,7 @@ const Login = () => {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const [isFormValid, setIsFormValid] = useState(false);
-
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     const validateEmail = (email) => {
         const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z]+\.[a-zA-Z]{2,}$/;
@@ -30,6 +32,15 @@ const Login = () => {
     },[email, password]);
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            setIsLoggedIn(!!user); // если есть пользователь, isLoggedIn = true
+        });
+
+        return () => unsubscribe(); // очищаем слушатель при размонтировании
+    }, []);
+
 
 
     const handleSubmit = async (e) => {
@@ -68,11 +79,21 @@ const Login = () => {
         setError("");
     };
 
+    const handleLogout = async () => {
+        await signOut(auth);
+        navigate("/login");
+    };
 
     return (
         <div className="login">
-            <div className="login_title">Log in</div>
-            <form className="login_content" onSubmit={handleSubmit}>
+            <div className="login_title">{isLoggedIn ? "Log out" : "Log in"}</div>
+
+            {isLoggedIn ? (
+                <div className="login_button_container">
+                    <Button onClick={handleLogout}>Log out</Button>
+                </div>
+            ) : (
+                <form className="login_content" onSubmit={handleSubmit} noValidate>
                     <label className="label">
                         Email
                         <Input
@@ -95,19 +116,21 @@ const Login = () => {
                             onChange={(e) => setPassword(e.target.value)}
                         />
                     </label>
-                {error && <p style={{ color: "red" }}>{error}</p>}
-                <div className="login_button_container">
-                    <Button
-                        type="submit"
-                        disabled={!isFormValid}
-                    >
-                        Submit
-                    </Button>
-                    <Button type="button" variant="btn__secondary" onClick={handleCancel}>
-                        Cancel
-                    </Button>
-                </div>
-            </form>
+                    {error && <p style={{ color: "red" }}>{error}</p>}
+                    <div className="login_button_container">
+                        <Button type="submit" disabled={!isFormValid}>
+                            Submit
+                        </Button>
+                        <Button
+                            type="button"
+                            variant="btn__secondary"
+                            onClick={handleCancel}
+                        >
+                            Cancel
+                        </Button>
+                    </div>
+                </form>
+            )}
         </div>
     );
 };
