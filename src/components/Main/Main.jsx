@@ -79,7 +79,7 @@ const Main = ({ onAddToCart }) => {
             </div>
 
             {hasMoreItems && (
-                <Button type="btn__primary" onClick={handleSeeMore}>
+                <Button variant="btn__primary" onClick={handleSeeMore}>
                     See more
                 </Button>
             )}

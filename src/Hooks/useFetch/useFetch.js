@@ -16,6 +16,10 @@ const useFetch = (url, options) => {
                 const response = await fetch(url, options);
                 const result = await response.json();
 
+                if(!response.ok) {
+                    throw new Error(`Failed to fetch data.Result:${ response.status }`);
+                }
+
                 setData(result);
                 saveToLocalStorage(result, response.status);
             } catch (err) {

@@ -1,0 +1,19 @@
+.custom-input {
+    background-color: #FAFAFA;
+    border: 1px solid #DDDDDD;
+    border-radius: 8px;
+    color: black;
+    font-size: 16px;
+    font-weight: bold;
+    height: 45px;
+    text-align: center;
+    line-height: 45px;
+}
+
+.amount--small {
+    width: 60px;
+}
+
+.amount--medium{
+    width: 430px;
+}
