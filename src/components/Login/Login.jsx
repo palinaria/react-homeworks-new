@@ -35,10 +35,10 @@ const Login = () => {
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
-            setIsLoggedIn(!!user); // если есть пользователь, isLoggedIn = true
+            setIsLoggedIn(!!user);
         });
 
-        return () => unsubscribe(); // очищаем слушатель при размонтировании
+        return () => unsubscribe();
     }, []);
 
 
