@@ -9,14 +9,24 @@ import {
 } from "firebase/auth";
 
 
+
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const [isFormValid, setIsFormValid] = useState(false);
 
+
+    const validateEmail = (email) => {
+        const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z]+\.[a-zA-Z]{2,}$/;
+        return (regex.test(email) && email.length > 5 && email.length <= 25 && email.includes("@"));
+    };
+
+
+
     useEffect(() => {
-        setIsFormValid(email.trim() !== "" && password.trim() !== "")
+        setIsFormValid(email.trim() !== "" && password.trim() !== "");
+        setError("");
     },[email, password]);
 
     const navigate = useNavigate();
@@ -25,7 +35,18 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (!isFormValid) return;
+        if(!validateEmail(email)) {
+            setError("Invalid email: must contain only English letters, '@', and be 6–25 characters.");
+            return;
+        }
+
+
+
+
+        if (!isFormValid){
+            setError(" Please fill in all fields.");
+            return;
+        }
 
         try {
             await signInWithEmailAndPassword(auth, email, password);
