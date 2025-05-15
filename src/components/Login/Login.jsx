@@ -6,7 +6,6 @@ import Button from "../Button/Button.jsx";
 import { auth } from "/src/firebase/firebase.js";
 import {
     signInWithEmailAndPassword,
-    createUserWithEmailAndPassword
 } from "firebase/auth";
 
 
@@ -20,34 +19,22 @@ const Login = () => {
         setIsFormValid(email.trim() !== "" && password.trim() !== "")
     },[email, password]);
 
-
     const navigate = useNavigate();
-
-
-
 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
         if (!isFormValid) return;
 
         try {
-
             await signInWithEmailAndPassword(auth, email, password);
-            alert("Welcome back!");
             navigate("/");
         } catch (loginError) {
-            if (loginError.code === "auth/user-not-found") {
-
-                try {
-                    await createUserWithEmailAndPassword(auth, email, password);
-                    alert("User registered and logged in!");
-                    navigate("/");
-                } catch (registerError) {
-                    setError(registerError.message);
-                }
-            } else if (loginError.code === "auth/wrong-password") {
+            if (loginError.code === "auth/wrong-password") {
                 alert("Wrong password.");
+            } else if (loginError.code === "auth/user-not-found") {
+                alert("User not found.");
             } else {
                 setError(loginError.message);
             }

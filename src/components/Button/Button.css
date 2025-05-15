@@ -29,7 +29,7 @@
     }
 
     &:disabled {
-        background-color: #6db2b4;
+        background-color: #c3cccc;
     }
 }
 
