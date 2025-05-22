@@ -1,38 +1,22 @@
-import React, {useState,useEffect} from "react";
+import  {FC,useState,useEffect} from "react";
 import { BrowserRouter as Router, Routes, Route,Navigate } from "react-router-dom";
 import './App.css';
-
 import MenuPage from "./pages/MenuPage/MenuPage"
 import HomeMainPage from "./pages/HomeMainPage/HomeMainPage"
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import LoginPage from "./pages/LoginPage/LoginPage";
-//import { auth } from "/src/firebase/firebase.js";
+import { auth } from "./firebase/firebase";
 import { onAuthStateChanged ,User} from "firebase/auth";
+import {CartProduct} from "./interfaces/menuItem";
 
-type CartProduct = {
-    productId: string;
-    title: string;
-    price: number;
-    quantity: number;
-    description: string;
-    image: string;
-};
 
-type ProductInCart = {
-    id: string;
-    name: string;
-    price: number;
-    quantity: number;
-    description: string;
-    image: string;
-};
 
 type CartItems = {
-    [productId: string]: ProductInCart;
+    [productId: string]: CartProduct;
 };
 
-const App: React.FC = () => {
+const App:FC = () => {
     const [cartItems, setCartItems] = useState<CartItems>({});
     const [totalQuantity, setTotalQuantity] = useState<number>(0);
     const [user, setUser] = useState<User | null>(null);
@@ -46,7 +30,7 @@ const App: React.FC = () => {
     }, []);
 
     const handleAddToCart = (product: CartProduct) => {
-        const productId = product.productId;
+        const productId = product.id;
         const productQuantity = product.quantity;
 
         setCartItems((prevItems) => {
@@ -60,14 +44,13 @@ const App: React.FC = () => {
             } else {
                 updatedItems[productId] = {
                     id: productId,
-                    name: product.title,
+                    meal: product.meal,
                     price: product.price,
                     quantity: productQuantity,
-                    description: product.description,
-                    image: product.image,
+                    instructions: product.instructions,
+                    img: product.img,
                 };
             }
-
             return updatedItems;
         });
 

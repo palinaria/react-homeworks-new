@@ -1,9 +1,9 @@
-import React, {useState,useEffect, ChangeEvent, FormEvent} from "react";
+import  {useState,useEffect, FC, FormEvent} from "react";
 import { useNavigate } from "react-router-dom";
 import "./Login.css"
 import Input from "../Input/Input"
 import Button from "../Button/Button";
-import { auth } from "/src/firebase/firebase.js";
+import { auth } from "../../firebase/firebase";
 import {
     signInWithEmailAndPassword,
     signOut,
@@ -13,7 +13,7 @@ import {
 
 
 
-const Login :React.FC = () => {
+const Login:FC  = () => {
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [error, setError] = useState<string>("");

@@ -1,28 +1,14 @@
-import React, {useRef} from "react";
+import {FC,useRef} from "react";
 import "./ProductCard.css";
 import Button from "../Button/Button";
 import Input from "../Input/Input"
+import {CartProduct, MenuItem} from "../../interfaces/menuItem";
 
-
-export type CartProduct = {
-    productId: string;
-    title: string;
-    price: number;
-    description: string;
-    image: string;
-    quantity: number;
-};
-
-type ProductCardProps = {
-    productId: string;
-    title: string;
-    price: number | string;
-    description: string;
-    image: string;
+interface ProductCardProps extends Omit<MenuItem, 'category'> {
     onAdd: (item: CartProduct) => void;
-};
+}
 
-const ProductCard: React.FC<ProductCardProps> = ({ productId, title, price, description, image, onAdd }) => {
+const ProductCard:FC<ProductCardProps> = ({ id, meal, price, instructions, img, onAdd }) => {
     const inputRef = useRef<HTMLInputElement>(null);
 
     const handleAddClick = () => {
@@ -30,23 +16,23 @@ const ProductCard: React.FC<ProductCardProps> = ({ productId, title, price, desc
         const quantity = parseInt(quantityValue, 10);
 
         onAdd({
-            productId,
-            title,
-            price: typeof price === "string" ? parseFloat(price) : price,
-            description,
-            image,
+            id,
+            meal,
+            price,
+            instructions,
+            img,
             quantity: isNaN(quantity) ? 1 : quantity,
         });
     };
 
     return (
         <div className="product_card">
-            <img src={image} alt="product" className="prod_img" />
+            <img src={img} alt="product" className="prod_img" />
             <div className="price highlight">${parseFloat(price.toString()).toFixed(2)}</div>
 
             <div className="product_info">
-                <div className="title">{title}</div>
-                <div className="description common_font">{description}</div>
+                <div className="title">{meal}</div>
+                <div className="description common_font">{instructions}</div>
                 <div className="add_to_cart">
                     <Input
                         type="number"

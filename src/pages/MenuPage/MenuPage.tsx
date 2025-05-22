@@ -1,13 +1,14 @@
-import React from 'react';
+import {FC} from 'react';
 import Main from '../../../src/components/Main/Main'
+import {CartProduct} from "../../interfaces/menuItem";
 
 
 interface MenuPageProps {
-    onAddToCart: (item: { id: string; meal: string; price: number; instructions: string; img: string; category: string })=> void;
+    onAddToCart: (item:CartProduct)=> void;
     totalQuantity: number;
 }
 
-const MenuPage: React.FC<MenuPageProps> = ({ onAddToCart, totalQuantity }) => {
+const MenuPage:FC<MenuPageProps> = ({ onAddToCart, totalQuantity }) => {
     return (
         <main>
             <Main onAddToCart={onAddToCart} totalQuantity={totalQuantity} />
