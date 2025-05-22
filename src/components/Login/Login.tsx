@@ -1,25 +1,26 @@
-import React, {useState,useEffect} from "react";
+import React, {useState,useEffect, ChangeEvent, FormEvent} from "react";
 import { useNavigate } from "react-router-dom";
 import "./Login.css"
-import Input from "/src/components/Input/Input.jsx"
-import Button from "../Button/Button.jsx";
+import Input from "../Input/Input"
+import Button from "../Button/Button";
 import { auth } from "/src/firebase/firebase.js";
 import {
     signInWithEmailAndPassword,
     signOut,
-    onAuthStateChanged
+    onAuthStateChanged,
+    User
 } from "firebase/auth";
 
 
 
-const Login = () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [error, setError] = useState("");
-    const [isFormValid, setIsFormValid] = useState(false);
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+const Login :React.FC = () => {
+    const [email, setEmail] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
+    const [error, setError] = useState<string>("");
+    const [isFormValid, setIsFormValid] = useState<boolean>(false);
+    const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
-    const validateEmail = (email) => {
+    const validateEmail = (email:string) :boolean => {
         const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z]+\.[a-zA-Z]{2,}$/;
         return (regex.test(email) && email.length > 5 && email.length <= 25 && email.includes("@"));
     };
@@ -34,7 +35,7 @@ const Login = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
+        const unsubscribe = onAuthStateChanged(auth, (user : User | null) => {
             setIsLoggedIn(!!user);
         });
 
@@ -43,15 +44,13 @@ const Login = () => {
 
 
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e : FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         if(!validateEmail(email)) {
             setError("Invalid email: must contain only English letters, '@', and be 6–25 characters.");
             return;
         }
-
-
 
 
         if (!isFormValid){
@@ -62,7 +61,7 @@ const Login = () => {
         try {
             await signInWithEmailAndPassword(auth, email, password);
             navigate("/");
-        } catch (loginError) {
+        } catch (loginError: any) {
             if (loginError.code === "auth/wrong-password") {
                 alert("Wrong password.");
             } else if (loginError.code === "auth/user-not-found") {
@@ -73,7 +72,7 @@ const Login = () => {
         }
     };
 
-    const handleCancel = () => {
+    const handleCancel = () :void => {
         setEmail("");
         setPassword("");
         setError("");
@@ -101,7 +100,7 @@ const Login = () => {
                             name="email"
                             placeholder="Enter your email"
                             value={email}
-                            size="medium"
+                            inputSize="medium"
                             onChange={(e) => setEmail(e.target.value)}
                         />
                     </label>
@@ -112,7 +111,7 @@ const Login = () => {
                             name="password"
                             placeholder="Enter your password"
                             value={password}
-                            size="medium"
+                            inputSize="medium"
                             onChange={(e) => setPassword(e.target.value)}
                         />
                     </label>

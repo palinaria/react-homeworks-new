@@ -5,14 +5,25 @@ import logo from '../../assets/logo_svg.svg';
 import cart from "../../assets/cart_svg.svg";
 
 
-const links = [
+interface HeaderProps {
+    totalQuantity: number;
+}
+
+interface Link {
+    to: string;
+    label: string;
+}
+
+
+
+const links: Link[] = [
     { to: '/', label: 'Home' },
     { to: '/menu', label: 'Menu' },
-    { to: '/company', label: 'Company' },  // Замените на правильный маршрут, если есть
+    { to: '/company', label: 'Company' },
     { to: '/login', label: 'Login' },
 ];
 
-const Header = ({ totalQuantity }) => {
+const Header: React.FC<HeaderProps> = ({ totalQuantity }) => {
     return (
         <header className="header font">
             <div className="extra_element"></div>
