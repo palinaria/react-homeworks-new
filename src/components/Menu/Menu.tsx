@@ -1,15 +1,21 @@
 import React from 'react';
 import "./Menu.css";
-import Button from "../Button/Button.jsx";
+import Button from "../Button/Button";
 
-const Menu = ({categories, onCategoryClick, selectedCategory }) => {
 
+type MenuProps = {
+    categories: string[];
+    onCategoryClick: (category: string) => void;
+    selectedCategory: string;
+}
+
+const Menu: React.FC<MenuProps> = ({ categories, onCategoryClick, selectedCategory }) => {
     return (
         <div className="main_to_choose_container">
             {categories.map((category) => (
                 <Button
                     key={category}
-                    type={selectedCategory === category ? "btn__primary" : "btn__secondary"}
+                    variant={selectedCategory === category ? "btn__primary" : "btn__secondary"}
                     onClick={() => onCategoryClick(category)}
                 >
                     {category}

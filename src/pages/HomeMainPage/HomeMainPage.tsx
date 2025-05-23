@@ -1,7 +1,7 @@
 import React from "react";
-import HomeMain from '/src/components/HomeMain/HomeMain.jsx';
+import HomeMain from '../../../src/components/HomeMain/HomeMain';
 
-const HomeMainPage = () => {
+const HomeMainPage :React.FC  = () => {
     return (
         <main>
             <HomeMain />
