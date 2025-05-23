@@ -14,8 +14,6 @@ interface Link {
     label: string;
 }
 
-
-
 const links: Link[] = [
     { to: '/', label: 'Home' },
     { to: '/menu', label: 'Menu' },

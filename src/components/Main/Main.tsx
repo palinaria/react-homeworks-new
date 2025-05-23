@@ -1,6 +1,7 @@
 import React, { useState,useEffect } from "react";
 import Menu from '../Menu/Menu';
-import ProductCard , { CartProduct } from '../ProductCard/ProductCard';
+import ProductCard  from '../ProductCard/ProductCard';
+import  { CartProduct} from "../../interfaces/menuItem";
 import "./Main.css";
 import Tooltip from "../Tooltip/Tooltip";
 import Button from "../Button/Button";
@@ -83,12 +84,11 @@ const Main :React.FC<MainProps> = ({ onAddToCart }) => {
                 {visibleItems.map((el) => (
                     <ProductCard
                         key={el.id}
-                        productId={el.id}
-                        index={el.id}
-                        title={el.meal}
+                        id={el.id}
+                        meal={el.meal}
                         price={el.price}
-                        description={el.instructions}
-                        image={el.img}
+                        instructions={el.instructions}
+                        img={el.img}
                         onAdd={onAddToCart}
                     />
                 ))}
