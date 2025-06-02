@@ -24,15 +24,24 @@
 .btn__primary {
     background-color: #35B8BE;
     color: white;
+    &:hover {
+        background-color:  #06b8c260;
+    }
+
+    &:disabled {
+        background-color: #c3cccc;
+    }
 }
 
-.btn__primary:hover {
-    background-color: #06b8c260;
-}
+
 
 .btn__secondary  {
     background-color: transparent;
     color:#222;
+    &:hover {
+        background-color: #35B8BE;
+        color: white;
+    }
 }
 
 .btn__secondary:hover {

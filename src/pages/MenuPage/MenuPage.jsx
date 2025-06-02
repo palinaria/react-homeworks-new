@@ -3,8 +3,12 @@ import Main from '/src/components/Main/Main.jsx'
 
 
 
+
 const MenuPage = ({ onAddToCart, totalQuantity }) => {
-    return <Main onAddToCart={onAddToCart} totalQuantity={totalQuantity} />;
+    return  <main>
+        <Main onAddToCart={onAddToCart} totalQuantity={totalQuantity} />
+    </main>
+
 };
 
 export default MenuPage;

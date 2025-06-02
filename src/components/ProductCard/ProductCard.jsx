@@ -1,6 +1,8 @@
 import React, {useRef} from "react";
 import "./ProductCard.css";
 import Button from "../Button/Button.jsx";
+import Input from "/src/components/Input/Input.jsx"
+
 
 const ProductCard = ({ productId, title, price, description, image, onAdd }) => {
     const inputRef = useRef();
@@ -15,11 +17,11 @@ const ProductCard = ({ productId, title, price, description, image, onAdd }) => 
                 <div className="title">{title}</div>
                 <div className="description common_font">{description}</div>
                 <div className="add_to_cart">
-                    <input
+                    <Input
                         type="number"
                         defaultValue="1"
                         min="1"
-                        className="amount"
+                        size = "small"
                         ref={inputRef}
                     />
                     <Button
