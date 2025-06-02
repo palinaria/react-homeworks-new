@@ -2,7 +2,8 @@ import  {FC,useState,useEffect} from "react";
 import { BrowserRouter as Router, Routes, Route,Navigate } from "react-router-dom";
 import './App.css';
 import MenuPage from "./pages/MenuPage/MenuPage"
-import HomeMainPage from "./pages/HomeMainPage/HomeMainPage"
+import HomeMainPage from "./pages/HomeMainPage/HomeMainPage";
+import LogoutPage from "./pages/LogoutPage/LogoutPage"
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import LoginPage from "./pages/LoginPage/LoginPage";
@@ -59,21 +60,16 @@ const App:FC = () => {
 
     return (
         <Router>
-            <Header totalQuantity={totalQuantity} />
+            <Header totalQuantity={totalQuantity} user={user}/>
             <main>
                 <Routes>
                     <Route path="/" element={user ? <HomeMainPage /> : <Navigate to="/login" />} />
-                    <Route
-                        path="/menu"
-                        element={
-                            user ? (
-                                <MenuPage onAddToCart={handleAddToCart} totalQuantity={totalQuantity} />
-                            ) : (
-                                <Navigate to="/login" />
-                            )
-                        }
-                    />
-                    <Route path="/login" element={<LoginPage />} />
+                    <Route path="/menu" element={user ? <MenuPage onAddToCart={handleAddToCart} totalQuantity={totalQuantity} /> : <Navigate to="/login" />} />
+
+
+                    <Route path="/login" element={!user ? <LoginPage /> : <Navigate to="/" />} />
+
+                    <Route path="/logout" element={<LogoutPage />} />
                 </Routes>
             </main>
             <Footer />

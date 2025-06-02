@@ -3,10 +3,11 @@ import { NavLink } from 'react-router-dom';
 import "./Header.css";
 import logo from '../../assets/logo_svg.svg';
 import cart from "../../assets/cart_svg.svg";
-
+import {User} from "firebase/auth";
 
 interface HeaderProps {
     totalQuantity: number;
+    user: User | null;
 }
 
 interface Link {
@@ -14,14 +15,15 @@ interface Link {
     label: string;
 }
 
-const links: Link[] = [
-    { to: '/', label: 'Home' },
-    { to: '/menu', label: 'Menu' },
-    { to: '/company', label: 'Company' },
-    { to: '/login', label: 'Login' },
-];
 
-const Header: React.FC<HeaderProps> = ({ totalQuantity }) => {
+const Header: React.FC<HeaderProps> = ({ totalQuantity, user }) => {
+    const links: Link[] = [
+        { to: '/', label: 'Home' },
+        { to: '/menu', label: 'Menu' },
+        { to: '/company', label: 'Company' },
+        user ? { to: '/logout', label: 'Logout' } : { to: '/login', label: 'Login' },
+    ];
+
     return (
         <header className="header font">
             <div className="extra_element"></div>
