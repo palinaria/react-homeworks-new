@@ -10,10 +10,12 @@ import {
     onAuthStateChanged,
     User
 } from "firebase/auth";
-
+import {login} from "../../Store/authSlice";
+import {useDispatch} from "react-redux";
 
 
 const Login:FC  = () => {
+    const dispatch = useDispatch();
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [error, setError] = useState<string>("");
@@ -35,8 +37,13 @@ const Login:FC  = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (user : User | null) => {
-            setIsLoggedIn(!!user);
+        const unsubscribe = onAuthStateChanged(auth, (user: User | null) => {
+            try {
+                setIsLoggedIn(!!user);
+                dispatch(login({ email: user?.email || "" }));
+            } catch (error) {
+                console.error("Error:", error);
+            }
         });
 
         return () => unsubscribe();

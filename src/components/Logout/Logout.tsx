@@ -4,13 +4,17 @@ import { signOut } from "firebase/auth";
 import { auth } from "../../firebase/firebase";
 import Button from "../Button/Button";
 import "./Logout.css";
+import {useDispatch} from "react-redux";
+import {logout} from "../../Store/authSlice";
 
 const Logout: React.FC = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const handleLogout = async () => {
         try {
             await signOut(auth);
+            dispatch(logout())
             navigate("/login");
         } catch (error) {
             console.error("Error:", error);
