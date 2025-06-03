@@ -1,7 +1,7 @@
 import React from "react";
 import take_away from "../../assets/homePage_img.png";
-import Button from "../Button/Button.jsx";
-import Rating from "/src/components/Rating/Rating.jsx"
+import Button from "../Button/Button";
+import Rating from "../Rating/Rating"
 import styled from "styled-components";
 
 const Wrapper = styled.main`
@@ -45,7 +45,7 @@ const TakeAwayImg = styled.img`
   max-width: 100%;
 `;
 
-const HomeMain = () => {
+const HomeMain : React.FC = () => {
     return (
         <Wrapper>
             <InfoBlock>
