@@ -11,10 +11,6 @@ import {
 } from "firebase/auth";
 import {login,logout} from "../../Store/authSlice";
 import {useDispatch} from "react-redux";
-import { useSelector } from "react-redux";
-import { RootState } from "../../Store/Store";
-
-
 
 const Login:FC  = () => {
     const dispatch = useDispatch();
@@ -23,17 +19,10 @@ const Login:FC  = () => {
     const [error, setError] = useState<string>("");
     const [isFormValid, setIsFormValid] = useState<boolean>(false);
 
-    const isLoggedIn = useSelector(
-        (state: RootState) => state.auth.user !== null
-    );
-
-
     const validateEmail = (email:string) :boolean => {
         const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z]+\.[a-zA-Z]{2,}$/;
         return (regex.test(email) && email.length > 5 && email.length <= 25 && email.includes("@"));
     };
-
-
 
     useEffect(() => {
         setIsFormValid(email.trim() !== "" && password.trim() !== "");
@@ -58,9 +47,6 @@ const Login:FC  = () => {
         return () => unsubscribe();
     }, [dispatch]);
 
-
-
-
     const handleSubmit = async (e : FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
@@ -68,7 +54,6 @@ const Login:FC  = () => {
             setError("Invalid email: must contain only English letters, '@', and be 6–25 characters.");
             return;
         }
-
 
         if (!isFormValid){
             setError(" Please fill in all fields.");
@@ -94,8 +79,6 @@ const Login:FC  = () => {
         setPassword("");
         setError("");
     };
-
-
 
     return (
         <div className="login">
@@ -141,8 +124,6 @@ const Login:FC  = () => {
 
     );
 };
-
-
 
 export default Login;
 
