@@ -7,8 +7,14 @@ import LogoutPage from "./pages/LogoutPage/LogoutPage"
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import LoginPage from "./pages/LoginPage/LoginPage";
+
 import { auth } from "./firebase/firebase";
 import { onAuthStateChanged ,User} from "firebase/auth";
+
+import { useDispatch, useSelector } from "react-redux";
+import { login, logout } from "./Store/authSlice";
+import { RootState, AppDispatch } from "./Store/Store";
+
 import {CartProduct} from "./interfaces/menuItem";
 
 
@@ -20,15 +26,20 @@ type CartItems = {
 const App:FC = () => {
     const [cartItems, setCartItems] = useState<CartItems>({});
     const [totalQuantity, setTotalQuantity] = useState<number>(0);
-    const [user, setUser] = useState<User | null>(null);
+    const dispatch = useDispatch<AppDispatch>();
+    const user = useSelector((state: RootState) => state.auth.user);
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
-            setUser(user);
+        const unsubscribe = onAuthStateChanged(auth, (user: User | null) => {
+            if (user) {
+                dispatch(login({ email: user.email || "" }));
+            } else {
+                dispatch(logout());
+            }
         });
 
         return () => unsubscribe();
-    }, []);
+    }, [dispatch]);
 
     const handleAddToCart = (product: CartProduct) => {
         const productId = product.id;

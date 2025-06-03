@@ -6,12 +6,14 @@ import Button from "../Button/Button";
 import { auth } from "../../firebase/firebase";
 import {
     signInWithEmailAndPassword,
-    signOut,
     onAuthStateChanged,
     User
 } from "firebase/auth";
-import {login} from "../../Store/authSlice";
+import {login,logout} from "../../Store/authSlice";
 import {useDispatch} from "react-redux";
+import { useSelector } from "react-redux";
+import { RootState } from "../../Store/Store";
+
 
 
 const Login:FC  = () => {
@@ -20,7 +22,11 @@ const Login:FC  = () => {
     const [password, setPassword] = useState<string>("");
     const [error, setError] = useState<string>("");
     const [isFormValid, setIsFormValid] = useState<boolean>(false);
-    const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+
+    const isLoggedIn = useSelector(
+        (state: RootState) => state.auth.user !== null
+    );
+
 
     const validateEmail = (email:string) :boolean => {
         const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z]+\.[a-zA-Z]{2,}$/;
@@ -39,15 +45,19 @@ const Login:FC  = () => {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user: User | null) => {
             try {
-                setIsLoggedIn(!!user);
-                dispatch(login({ email: user?.email || "" }));
+                if (user) {
+                    dispatch(login({ email: user.email || "" }));
+                } else {
+                    dispatch(logout());
+                }
             } catch (error) {
-                console.error("Error:", error);
+                console.error("Auth state change error:", error);
             }
         });
 
         return () => unsubscribe();
-    }, []);
+    }, [dispatch]);
+
 
 
 
@@ -85,59 +95,50 @@ const Login:FC  = () => {
         setError("");
     };
 
-    const handleLogout = async () => {
-        await signOut(auth);
-        navigate("/login");
-    };
+
 
     return (
         <div className="login">
-            <div className="login_title">{isLoggedIn ? "Log out" : "Log in"}</div>
-
-            {isLoggedIn ? (
+            <div className="login_title">Log in</div>
+            <form className="login_content" onSubmit={handleSubmit} noValidate>
+                <label className="label">
+                    Email
+                    <Input
+                        type="email"
+                        name="email"
+                        placeholder="Enter your email"
+                        value={email}
+                        inputSize="medium"
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
+                </label>
+                <label className="label">
+                    Password
+                    <Input
+                        type="password"
+                        name="password"
+                        placeholder="Enter your password"
+                        value={password}
+                        inputSize="medium"
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                </label>
+                {error && <p style={{ color: "red" }}>{error}</p>}
                 <div className="login_button_container">
-                    <Button onClick={handleLogout}>Log out</Button>
+                    <Button type="submit" disabled={!isFormValid}>
+                        Submit
+                    </Button>
+                    <Button
+                        type="button"
+                        variant="btn__secondary"
+                        onClick={handleCancel}
+                    >
+                        Cancel
+                    </Button>
                 </div>
-            ) : (
-                <form className="login_content" onSubmit={handleSubmit} noValidate>
-                    <label className="label">
-                        Email
-                        <Input
-                            type="email"
-                            name="email"
-                            placeholder="Enter your email"
-                            value={email}
-                            inputSize="medium"
-                            onChange={(e) => setEmail(e.target.value)}
-                        />
-                    </label>
-                    <label className="label">
-                        Password
-                        <Input
-                            type="password"
-                            name="password"
-                            placeholder="Enter your password"
-                            value={password}
-                            inputSize="medium"
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
-                    </label>
-                    {error && <p style={{ color: "red" }}>{error}</p>}
-                    <div className="login_button_container">
-                        <Button type="submit" disabled={!isFormValid}>
-                            Submit
-                        </Button>
-                        <Button
-                            type="button"
-                            variant="btn__secondary"
-                            onClick={handleCancel}
-                        >
-                            Cancel
-                        </Button>
-                    </div>
-                </form>
-            )}
+            </form>
         </div>
+
     );
 };
 
