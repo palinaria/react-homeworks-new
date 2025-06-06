@@ -1,6 +1,7 @@
 import {FC} from "react";
 import {BrowserRouter as Router, Routes, Route, Navigate} from "react-router-dom";
 import './App.css';
+import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import MenuPage from "./pages/MenuPage/MenuPage"
 import HomeMainPage from "./pages/HomeMainPage/HomeMainPage";
 import LogoutPage from "./pages/LogoutPage/LogoutPage"
@@ -31,7 +32,7 @@ const App: FC = () => {
                         <Route path="/menu" element={<MenuPage />} />
                         <Route path="/company"  />
                     </Route>
-
+                    <Route path="*" element={<NotFoundPage />} />
                 </Routes>
             </main>
             <Footer/>
