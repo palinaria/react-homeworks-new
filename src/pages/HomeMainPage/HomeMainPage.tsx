@@ -3,9 +3,7 @@ import HomeMain from '../../../src/components/HomeMain/HomeMain';
 
 const HomeMainPage :React.FC  = () => {
     return (
-        <main>
             <HomeMain />
-        </main>
     );
 };
 

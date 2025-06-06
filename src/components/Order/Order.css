@@ -1,0 +1,14 @@
+.order{
+    margin-bottom: 140px;
+    margin-top:140px;
+}
+
+.order_main__title {
+    color: #35B8BE;
+    font-size: 50px;
+    font-weight: 400;
+    letter-spacing: 1.65px;
+    line-height: 55px;
+    margin-bottom: 46px;
+    text-align: center;
+}

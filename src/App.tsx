@@ -2,6 +2,7 @@ import {FC} from "react";
 import {BrowserRouter as Router, Routes, Route, Navigate} from "react-router-dom";
 import './App.css';
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
+import OrderPage from "./pages/OrderPage/OrderPage"
 import MenuPage from "./pages/MenuPage/MenuPage"
 import HomeMainPage from "./pages/HomeMainPage/HomeMainPage";
 import LogoutPage from "./pages/LogoutPage/LogoutPage"
@@ -30,7 +31,7 @@ const App: FC = () => {
                     <Route element={<ProtectedRoutes />}>
                         <Route path="/" element={<HomeMainPage />} />
                         <Route path="/menu" element={<MenuPage />} />
-                        <Route path="/company"  />
+                        <Route path="/order"  element={<OrderPage />}/>
                     </Route>
                     <Route path="*" element={<NotFoundPage />} />
                 </Routes>
