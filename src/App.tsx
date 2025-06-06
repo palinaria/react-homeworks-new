@@ -11,6 +11,8 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import {useSelector} from "react-redux";
 import {RootState} from "./Store/Store";
 
+import ProtectedRoutes from "./routes/ProtectedRoutes";
+
 
 const App: FC = () => {
 
@@ -21,10 +23,15 @@ const App: FC = () => {
             <Header/>
             <main>
                 <Routes>
-                    <Route path="/" element={user ? <HomeMainPage/> : <Navigate to="/login"/>}/>
-                    <Route path="/menu" element={user ? <MenuPage/> : <Navigate to="/login"/>}/>
-                    <Route path="/login" element={!user ? <LoginPage/> : <Navigate to="/"/>}/>
-                    <Route path="/logout" element={<LogoutPage/>}/>
+                    <Route path="/login" element={<LoginPage />} />
+                    <Route path="/logout" element={<LogoutPage />} />
+
+                    <Route element={<ProtectedRoutes />}>
+                        <Route path="/" element={<HomeMainPage />} />
+                        <Route path="/menu" element={<MenuPage />} />
+                        <Route path="/company"  />
+                    </Route>
+
                 </Routes>
             </main>
             <Footer/>
