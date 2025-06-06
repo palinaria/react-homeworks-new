@@ -1,49 +1,48 @@
-import Input from "../Input/Input";
-import Button from "../Button/Button";
+import React from 'react';
+import {useDispatch} from 'react-redux';
+import {updateQuantity, removeItem} from '../../Store/cartSlice';
+import {CartProduct} from '../../interfaces/menuItem';
+import './OrderItem.css';
 
+interface OrderItemProps {
+    item: CartProduct;
+}
 
+const OrderItem: React.FC<OrderItemProps> = ({item}) => {
+    const dispatch = useDispatch();
 
-return(
-    <div className="order_item">
-        <div className="left_order_item">
-            <img src={img} alt="product" className="prod_img"/>
-            <div className="title">{meal}</div>
-        </div>
-        <div className="right_order_item">
-            <div className="price highlight">${parseFloat(price.toString()).toFixed(2)}</div>
-            <div className="add_to_cart">
-                <Input
+    const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const quantity = parseInt(e.target.value, 10);
+        if (quantity > 0) {
+            dispatch(updateQuantity({id: item.id, quantity}));
+        }
+    };
+
+    const handleRemove = () => {
+        dispatch(removeItem(item.id));
+    };
+
+    return (
+        <div className="order_item">
+            <div className="order_item__left">
+                <img src={item.img} alt={item.meal} className="order_img" />
+                <div className="product_title">{item.meal}</div>
+            </div>
+
+            <div className="order_item__right">
+                <div className="order_price">${item.price.toFixed(2)}</div>
+                <input
                     type="number"
-                    defaultValue="1"
                     min="1"
-                    inputSize="small"
-                    ref={inputRef}
+                    value={item.quantity}
+                    onChange={handleQuantityChange}
+                    className="order_quantity"
                 />
-                <Button>Click</Button>
-        </div>
-    </div>
-)
-
-
-return (
-    <div className="product_card">
-        <img src={img} alt="product" className="prod_img"/>
-        <div className="price highlight">${parseFloat(price.toString()).toFixed(2)}</div>
-
-        <div className="product_info">
-            <div className="title">{meal}</div>
-            <div className="description common_font">{instructions}</div>
-            <div className="add_to_cart">
-                <Input
-                    type="number"
-                    defaultValue="1"
-                    min="1"
-                    inputSize="small"
-                    ref={inputRef}
-                />
-                <Button onClick={handleAddClick}>Add to cart</Button>
+                <button onClick={handleRemove} className="order_remove">×</button>
             </div>
         </div>
-    </div>
-);
+    );
+
 };
+
+export default OrderItem;
