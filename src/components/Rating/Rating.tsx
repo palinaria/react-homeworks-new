@@ -24,7 +24,7 @@ const Highlight = styled.a`
   color: #35b8be;
 `;
 
-const Rating = () =>(
+const Rating:React.FC= () =>(
     <>
 <TrustpilotContainer>
     <img src={star} alt="star" className="star" />
@@ -36,9 +36,6 @@ const Rating = () =>(
 </RatingText>
     </>
 );
-
-
-
 
 
 
