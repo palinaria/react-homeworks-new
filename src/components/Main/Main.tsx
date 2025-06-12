@@ -1,17 +1,34 @@
 import React, { useState,useEffect } from "react";
-import Menu from '../Menu/Menu.jsx';
-import ProductCard from '../ProductCard/ProductCard.jsx';
+import Menu from '../Menu/Menu';
+import ProductCard  from '../ProductCard/ProductCard';
+import  { CartProduct} from "../../interfaces/menuItem";
 import "./Main.css";
-import Tooltip from "../Tooltip/Tooltip.jsx";
-import Button from "../Button/Button.jsx";
-import useFetch from "../../Hooks/useFetch/useFetch.js";
+import Tooltip from "../Tooltip/Tooltip";
+import Button from "../Button/Button";
+import useFetch from "../../Hooks/useFetch/useFetch";
+
+type MenuItem = {
+    id: string;
+    meal: string;
+    price: number;
+    instructions: string;
+    img: string;
+    category: string;
+};
+
+
+type MainProps = {
+    onAddToCart: (item: CartProduct) => void;
+    totalQuantity?: number;
+};
+
 
 
 const visible_items_count = 6;
 
-const Main = ({ onAddToCart }) => {
-    const [menuItems, setMenuItems] = useState([]);
-    const [visibleCount, setVisibleCount] = useState(visible_items_count);
+const Main :React.FC<MainProps> = ({ onAddToCart }) => {
+    const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
+    const [visibleCount, setVisibleCount] = useState<number>(visible_items_count);
     const[selectedCategory, setSelectedCategory] = useState("Dessert");
 
 
@@ -22,7 +39,7 @@ const Main = ({ onAddToCart }) => {
                 if(!response.ok) {
                     throw new Error(`Failed to fetch data.Status:${response.status}`);
                 }
-                const result = await response.json();
+                const result : MenuItem[] = await response.json();
                 setMenuItems(result);
             } catch (error) {
                 console.error("Error fetching data:", error);
@@ -37,7 +54,7 @@ const Main = ({ onAddToCart }) => {
     const handleSeeMore = () => {
         setVisibleCount((prev) => prev + visible_items_count);
     };
-    const handleCategoryClick = (category) => {
+    const handleCategoryClick = (category:string) => {
         setSelectedCategory(category);
         setVisibleCount(visible_items_count);
     };
@@ -67,12 +84,11 @@ const Main = ({ onAddToCart }) => {
                 {visibleItems.map((el) => (
                     <ProductCard
                         key={el.id}
-                        productId={el.id}
-                        index={el.id}
-                        title={el.meal}
+                        id={el.id}
+                        meal={el.meal}
                         price={el.price}
-                        description={el.instructions}
-                        image={el.img}
+                        instructions={el.instructions}
+                        img={el.img}
                         onAdd={onAddToCart}
                     />
                 ))}
