@@ -1,0 +1,30 @@
+.order_wrapper {
+    padding: 140px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+    background-color: #F5FBFC;;
+
+}
+
+.order_title {
+    color: #35B8BE;
+    font-size: 50px;
+    font-weight: 400;
+    letter-spacing: 1.65px;
+    line-height: 55px;
+    margin-bottom: 46px;
+    text-align: center;
+}
+
+.order_items {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.order_empty {
+    color: #888;
+    font-size: 16px;
+}

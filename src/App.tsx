@@ -1,6 +1,8 @@
 import {FC} from "react";
 import {BrowserRouter as Router, Routes, Route, Navigate} from "react-router-dom";
 import './App.css';
+import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
+import OrderPage from "./pages/OrderPage/OrderPage"
 import MenuPage from "./pages/MenuPage/MenuPage"
 import HomeMainPage from "./pages/HomeMainPage/HomeMainPage";
 import LogoutPage from "./pages/LogoutPage/LogoutPage"
@@ -10,6 +12,8 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 
 import {useSelector} from "react-redux";
 import {RootState} from "./Store/Store";
+
+import ProtectedRoutes from "./routes/ProtectedRoutes";
 
 
 const App: FC = () => {
@@ -21,10 +25,15 @@ const App: FC = () => {
             <Header/>
             <main>
                 <Routes>
-                    <Route path="/" element={user ? <HomeMainPage/> : <Navigate to="/login"/>}/>
-                    <Route path="/menu" element={user ? <MenuPage/> : <Navigate to="/login"/>}/>
-                    <Route path="/login" element={!user ? <LoginPage/> : <Navigate to="/"/>}/>
-                    <Route path="/logout" element={<LogoutPage/>}/>
+                    <Route path="/login" element={<LoginPage />} />
+                    <Route path="/logout" element={<LogoutPage />} />
+
+                    <Route element={<ProtectedRoutes />}>
+                        <Route path="/" element={<HomeMainPage />} />
+                        <Route path="/menu" element={<MenuPage />} />
+                        <Route path="/order"  element={<OrderPage />}/>
+                    </Route>
+                    <Route path="*" element={<NotFoundPage />} />
                 </Routes>
             </main>
             <Footer/>

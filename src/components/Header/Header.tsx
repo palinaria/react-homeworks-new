@@ -24,7 +24,7 @@ const Header: React.FC = () => {
     const links: Link[] = [
         {to: '/', label: 'Home'},
         {to: '/menu', label: 'Menu'},
-        {to: '/company', label: 'Company'},
+        {to: '/order', label: 'Order'},
         isLoggedIn ? {to: '/logout', label: 'Logout'} : {to: '/login', label: 'Login'},
     ];
 
