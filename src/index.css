@@ -1,6 +1,94 @@
-*{
+* {
   box-sizing: border-box;
   font-family: "Inter", sans-serif;
   margin: 0;
   padding: 0;
 }
+
+.light {
+  --background-color: #ffffff;
+  --text-color: #000000;
+  --accent-color: #35B8BE;
+  --subtitle-color: #546285;
+
+  --header-bg: #ffffff;
+  --footer-bg: #f9f9f9;
+
+  --button-bg: var(--accent-color);
+  --button-text: #ffffff;
+
+  --button-border: #61728333;
+  --button-secondary-text: #222222;
+  --button-primary-hover-bg: #06b8c260;
+  --button-disabled-bg: #c3cccc;
+  --button-disabled-text: #888888;
+
+  --input-bg: #FAFAFA;
+  --input-text: #000000;
+
+  --card-bg: #ffffff;
+
+  --login-bg: #F5FBFC;
+  --login-border: #35B8BE26;
+
+  --error-color: #ff4c4c;
+
+  --disabled-text-color: #888888;
+
+  --accent-color-transparent: #35B8BE26;
+  --common-font-color: #546285;
+  --tooltip-text-color: #fff;
+  --text-muted: #546285;
+  --line-color: rgba(126, 130, 143, 0.09);
+}
+
+.dark {
+  --background-color: #121212;
+  --text-color: #f0f0f0;
+  --accent-color: #06b8c2;
+  --subtitle-color: #a0accf;
+
+  --header-bg: #1e1e1e;
+  --footer-bg: #181818;
+
+  --button-bg: #2a2a2a;
+  --button-text: #ffffff;
+
+  --button-border: #4e4e4e;
+  --button-secondary-text: #dddddd;
+  --button-primary-hover-bg: #06b8c260;
+  --button-disabled-bg: #444444;
+  --button-disabled-text: #888888;
+
+  --input-bg: #1f1f1f;
+  --input-text: #ffffff;
+
+  --card-bg: #1a1a1a;
+
+  --login-bg: #1a1a1a;
+  --login-border: #06b8c233;
+
+  --error-color: #ff6b6b;
+
+  --disabled-text-color: #aaaaaa;
+
+  --accent-color-transparent: #063a5f40;
+  --common-font-color: #9aa0b4;
+  --tooltip-text-color: #fff;
+  --text-muted: #bbb;
+  --line-color: rgba(255, 255, 255, 0.1);
+}
+
+.light main {
+  background-image: url("/images/homePage_font.png");
+}
+
+.dark main {
+  background-image: none !important;
+}
+
+.light .footer {
+  background-image: url("/images/footer_font.png");}
+
+.dark .footer {
+  background-image: none !important;}

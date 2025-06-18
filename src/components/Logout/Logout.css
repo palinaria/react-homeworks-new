@@ -4,7 +4,7 @@
     justify-content: center;
     flex-direction: column;
     padding-top: 6%;
-    background-color: #F5FBFC;
+    background-color: var(--login-bg, #F5FBFC);
     min-height: 100vh;
 }
 
@@ -14,7 +14,7 @@
     font-size: 50px;
     line-height: 55px;
     letter-spacing: 1.65px;
-    color: #35B8BE;
+    color: var(--accent-color, #35B8BE);
     margin-bottom: 54px;
 }
 

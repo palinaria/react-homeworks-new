@@ -4,7 +4,7 @@ import './index.css'
 import App from './App.js'
 import { Provider } from 'react-redux';
 import store from '../src/Store/Store';
-
+import { ThemeProvider } from './contexts/ThemeContext';
 
 const rootElement = document.getElementById('root');
 if (!rootElement) throw new Error('Root element not found');
@@ -12,7 +12,9 @@ if (!rootElement) throw new Error('Root element not found');
 createRoot(rootElement).render(
     <StrictMode>
         <Provider store={store}>
-        <App />
+            <ThemeProvider>
+            <App />
+            </ThemeProvider>
         </Provider>
     </StrictMode>,
 );

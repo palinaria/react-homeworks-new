@@ -1,6 +1,6 @@
 .product_card {
-    background-color: #FFF;
-    border: 1px solid #35B8BE26;
+    background-color: var(--card-bg, #FFF);
+    border: 1px solid var(--accent-color-transparent, #35B8BE26);
     border-radius: 6px;
     display: flex;
     gap: 30px;
@@ -20,7 +20,7 @@
     position: absolute;
     top: 26px;
     right: 26px;
-    color: #35B8BE;
+    color: var(--accent-color, #35B8BE);
     font-size: 18px;
 }
 
@@ -30,7 +30,7 @@
 }
 
 .title {
-    color: #08090A;
+    color: var(--text-color, #08090A);
     font-size: 18px;
     font-weight: 400;
     letter-spacing: 0.6px;
@@ -51,6 +51,7 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
+    color: var(--common-font-color, #546285);
 }
 
 .common_font {
@@ -58,7 +59,7 @@
     font-size: 16px;
     line-height: 24px;
     letter-spacing: 0.32px;
-    color: #546285;
+    color: var(--common-font-color, #546285);
 }
 
 .add_to_cart {
