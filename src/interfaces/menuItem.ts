@@ -9,4 +9,5 @@ export interface MenuItem {
 
 export interface CartProduct extends Omit<MenuItem, 'category'> {
     quantity: number;
+
 }

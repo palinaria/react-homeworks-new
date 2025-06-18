@@ -6,26 +6,23 @@ import Button from "../Button/Button";
 import { auth } from "../../firebase/firebase";
 import {
     signInWithEmailAndPassword,
-    signOut,
     onAuthStateChanged,
     User
 } from "firebase/auth";
-
-
+import {login,logout} from "../../Store/authSlice";
+import {useDispatch} from "react-redux";
 
 const Login:FC  = () => {
+    const dispatch = useDispatch();
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [error, setError] = useState<string>("");
     const [isFormValid, setIsFormValid] = useState<boolean>(false);
-    const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
     const validateEmail = (email:string) :boolean => {
         const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z]+\.[a-zA-Z]{2,}$/;
         return (regex.test(email) && email.length > 5 && email.length <= 25 && email.includes("@"));
     };
-
-
 
     useEffect(() => {
         setIsFormValid(email.trim() !== "" && password.trim() !== "");
@@ -35,14 +32,20 @@ const Login:FC  = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (user : User | null) => {
-            setIsLoggedIn(!!user);
+        const unsubscribe = onAuthStateChanged(auth, (user: User | null) => {
+            try {
+                if (user) {
+                    dispatch(login({ email: user.email || "" }));
+                } else {
+                    dispatch(logout());
+                }
+            } catch (error) {
+                console.error("Auth state change error:", error);
+            }
         });
 
         return () => unsubscribe();
-    }, []);
-
-
+    }, [dispatch]);
 
     const handleSubmit = async (e : FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -51,7 +54,6 @@ const Login:FC  = () => {
             setError("Invalid email: must contain only English letters, '@', and be 6–25 characters.");
             return;
         }
-
 
         if (!isFormValid){
             setError(" Please fill in all fields.");
@@ -78,63 +80,50 @@ const Login:FC  = () => {
         setError("");
     };
 
-    const handleLogout = async () => {
-        await signOut(auth);
-        navigate("/login");
-    };
-
     return (
         <div className="login">
-            <div className="login_title">{isLoggedIn ? "Log out" : "Log in"}</div>
-
-            {isLoggedIn ? (
+            <div className="login_title">Log in</div>
+            <form className="login_content" onSubmit={handleSubmit} noValidate>
+                <label className="label">
+                    Email
+                    <Input
+                        type="email"
+                        name="email"
+                        placeholder="Enter your email"
+                        value={email}
+                        inputSize="medium"
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
+                </label>
+                <label className="label">
+                    Password
+                    <Input
+                        type="password"
+                        name="password"
+                        placeholder="Enter your password"
+                        value={password}
+                        inputSize="medium"
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                </label>
+                {error && <p style={{ color: "red" }}>{error}</p>}
                 <div className="login_button_container">
-                    <Button onClick={handleLogout}>Log out</Button>
+                    <Button type="submit" disabled={!isFormValid}>
+                        Submit
+                    </Button>
+                    <Button
+                        type="button"
+                        variant="btn__secondary"
+                        onClick={handleCancel}
+                    >
+                        Cancel
+                    </Button>
                 </div>
-            ) : (
-                <form className="login_content" onSubmit={handleSubmit} noValidate>
-                    <label className="label">
-                        Email
-                        <Input
-                            type="email"
-                            name="email"
-                            placeholder="Enter your email"
-                            value={email}
-                            inputSize="medium"
-                            onChange={(e) => setEmail(e.target.value)}
-                        />
-                    </label>
-                    <label className="label">
-                        Password
-                        <Input
-                            type="password"
-                            name="password"
-                            placeholder="Enter your password"
-                            value={password}
-                            inputSize="medium"
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
-                    </label>
-                    {error && <p style={{ color: "red" }}>{error}</p>}
-                    <div className="login_button_container">
-                        <Button type="submit" disabled={!isFormValid}>
-                            Submit
-                        </Button>
-                        <Button
-                            type="button"
-                            variant="btn__secondary"
-                            onClick={handleCancel}
-                        >
-                            Cancel
-                        </Button>
-                    </div>
-                </form>
-            )}
+            </form>
         </div>
+
     );
 };
-
-
 
 export default Login;
 
