@@ -1,6 +1,6 @@
 .main {
     align-items: center;
-    background-color: #F5FBFC;
+    background-color: var(--login-bg, #F5FBFC);
     display: flex;
     flex-direction: column;
     padding: 140px 120px;
@@ -9,15 +9,17 @@
 .main__subtitle {
     margin-bottom: 48px;
     text-align: center;
+    color: var(--text-color);
 }
 
 .main__title {
-    color: #35B8BE;
+    color: var(--accent-color, #35B8BE);
     font-size: 50px;
     font-weight: 400;
     letter-spacing: 1.65px;
     line-height: 55px;
     margin-bottom: 26px;
+    text-align: center;
 }
 
 .main_menu {
@@ -28,6 +30,6 @@
     margin-bottom: 64px;
 }
 
-.highlight{
-    color: #35B8BE;
+.highlight {
+    color: var(--accent-color, #35B8BE);
 }

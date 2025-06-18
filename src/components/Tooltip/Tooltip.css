@@ -4,17 +4,21 @@
     display: inline-block;
 }
 
-.tooltipText{
+.tooltipText {
     position: absolute;
     top: 50%;
     left: 50%;
-    background-color: #35B8BE;
-    color: #fff;
+    background-color: var(--accent-color, #35B8BE);
+    color: var(--tooltip-text-color, #fff);
     border-radius: 6px;
     padding: 5px 10px;
     font-size: 14px;
     visibility: hidden;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    z-index: 10;
 }
+
 .tooltip:hover .tooltipText {
     visibility: visible;
 }

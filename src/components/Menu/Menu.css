@@ -5,10 +5,7 @@
     margin-bottom: 50px;
 }
 
-
-
-
-.colored{
-    background-color: red;
-    color: white;
+.colored {
+    background-color: var(--accent-color, red);
+    color: var(--button-text, white);
 }

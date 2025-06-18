@@ -1,56 +1,55 @@
-.login{
+.login {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    padding-top: 6%;
-    background-color:#F5FBFC;
-
+    background-color: var(--login-bg);
+    transition: background-color 0.3s ease;
+    padding-top: 156px;
+    padding-bottom: 156px;
 }
 
-.login_title{
+.login_title {
     text-align: center;
     font-weight: 400;
     font-size: 50px;
     line-height: 55px;
     letter-spacing: 1.65px;
-    color:#35B8BE;
-    margin-bottom:54px;
+    color: var(--accent-color);
+    margin-bottom: 54px;
 }
 
-.login_content{
-    width:695px;
-    height:284px;
-    background-color: #FFFFFF;
-    border: 1px solid #35B8BE26;
+.login_content {
+    width: 695px;
+    height: 284px;
+    background-color: var(--card-bg);
+    border: 1px solid var(--login-border);
     border-radius: 15px;
-    padding-top: 36px;
-    padding-right: 68px;
-    padding-left: 68px;
-    padding-bottom: 42px;
+    padding: 36px 68px 42px 68px;
     display: flex;
     flex-direction: column;
-    gap:26px;
-
+    gap: 26px;
 }
 
-label{
-    display:flex;
-    gap:30px;
-    align-items: center;
-}
-
-span{
-    text-align: left;
-}
-
-.login_button_container{
+label {
     display: flex;
-    gap:30px;
+    gap: 30px;
+    align-items: center;
+    color: var(--text-color);
+}
+
+span {
+    text-align: left;
+    color: var(--text-color);
+}
+
+.login_button_container {
+    display: flex;
+    gap: 30px;
     justify-content: center;
 }
 
-.label{
+.label {
     display: flex;
     justify-content: space-between;
 }

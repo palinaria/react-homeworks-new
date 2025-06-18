@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import star from "/src/assets/star_svg.svg"
+import star from "/src/assets/star_svg.svg";
 
 const TrustpilotContainer = styled.div`
   display: flex;
@@ -10,33 +10,31 @@ const TrustpilotContainer = styled.div`
 `;
 
 const TrustpilotText = styled.div`
-  color: #000000;
+  color: var(--text-color);
 `;
 
 const RatingText = styled.div`
   font-weight: 400;
   font-size: 16px;
   line-height: 20px;
-  color: #08090a;
+  color: var(--text-color);
 `;
 
 const Highlight = styled.a`
-  color: #35b8be;
+  color: var(--accent-color);
 `;
 
-const Rating:React.FC= () =>(
+const Rating: React.FC = () => (
     <>
-<TrustpilotContainer>
-    <img src={star} alt="star" className="star" />
-    <TrustpilotText>Trustpilot</TrustpilotText>
-</TrustpilotContainer>
+        <TrustpilotContainer>
+            <img src={star} alt="star" className="star" />
+            <TrustpilotText>Trustpilot</TrustpilotText>
+        </TrustpilotContainer>
 
-<RatingText>
-    <Highlight href="#">4.8 out of 5</Highlight> based on 2000+ reviews
-</RatingText>
+        <RatingText>
+            <Highlight href="#">4.8 out of 5</Highlight> based on 2000+ reviews
+        </RatingText>
     </>
 );
-
-
 
 export default Rating;
