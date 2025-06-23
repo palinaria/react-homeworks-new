@@ -10,7 +10,6 @@ describe('OrderItem Component', () => {
     const mockDispatch = jest.fn();
 
     beforeEach(() => {
-
         (useDispatch as unknown as jest.Mock).mockReturnValue(mockDispatch);
         jest.clearAllMocks();
     });
@@ -24,12 +23,18 @@ describe('OrderItem Component', () => {
         instructions: 'Delicious cheesy pizza',
     };
 
-    test('renders item details', () => {
+    test('renders item details with correct data attributes', () => {
         render(<OrderItem item={item} />);
-        expect(screen.getByText('Pizza')).toBeInTheDocument();
-        expect(screen.getByText('$12.99')).toBeInTheDocument();
-        expect(screen.getByRole('spinbutton')).toHaveValue(1);
-        expect(screen.getByAltText('Pizza')).toBeInTheDocument();
+
+        const name = screen.getByText('Pizza');
+        const price = screen.getByText('$12.99');
+        const quantity = screen.getByRole('spinbutton');
+        const img = screen.getByAltText('Pizza');
+
+        expect(name).toHaveAttribute('data-text-id', 'name');
+        expect(price).toHaveAttribute('data-text-id', 'price');
+        expect(quantity).toHaveValue(1);
+        expect(img).toBeInTheDocument();
     });
 
     test('dispatches updateQuantity on valid quantity change', () => {
@@ -51,11 +56,22 @@ describe('OrderItem Component', () => {
 
     test('dispatches removeItem on remove button click', () => {
         render(<OrderItem item={item} />);
-        const btn = screen.getByRole('button', { name: '×' });
+        const btn = screen.getByRole('button', { name: 'remove' }); // <--- здесь изменено
         fireEvent.click(btn);
         expect(mockDispatch).toHaveBeenCalledWith({
             type: 'cart/removeItem',
             payload: '1',
         });
+    });
+
+
+    test('renders product image with correct alt and data-testid', () => {
+        render(<OrderItem item={item} />);
+
+        const img = screen.getByTestId('item-img');
+
+        expect(img).toBeInTheDocument();
+        expect(img).toHaveAttribute('src', 'pizza.jpg');
+        expect(img).toHaveAttribute('alt', 'Pizza');
     });
 });
