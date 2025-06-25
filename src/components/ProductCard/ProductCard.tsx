@@ -1,16 +1,15 @@
-import {FC, useRef} from "react";
+import { FC, useRef } from "react";
 import "./ProductCard.css";
 import Button from "../Button/Button";
-import Input from "../Input/Input"
-import {MenuItem} from "../../interfaces/menuItem";
-import {useDispatch} from "react-redux";
-import {addItem} from "../../Store/cartSlice";
+import Input from "../Input/Input";
+import { MenuItem } from "../../interfaces/menuItem";
+import { useDispatch } from "react-redux";
+import { addItem } from "../../Store/cartSlice";
 
-
-const ProductCard: FC<Omit<MenuItem, 'category'>> = ({id, meal, price, instructions, img}) => {
+const ProductCard: FC<Omit<MenuItem, 'category'>> = ({ id, meal, price, instructions, img }) => {
     const inputRef = useRef<HTMLInputElement>(null);
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     const handleAddClick = () => {
         const quantityValue = inputRef.current?.value ?? "1";
         const quantity = parseInt(quantityValue, 10);
@@ -22,13 +21,12 @@ const ProductCard: FC<Omit<MenuItem, 'category'>> = ({id, meal, price, instructi
             instructions,
             img,
             quantity: isNaN(quantity) ? 1 : quantity,
-        }))
-
+        }));
     };
 
     return (
         <div className="product_card">
-            <img src={img} alt="product" className="prod_img"/>
+            <img src={img} alt="product" className="prod_img" />
             <div className="price highlight">${parseFloat(price.toString()).toFixed(2)}</div>
 
             <div className="product_info">

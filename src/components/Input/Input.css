@@ -1,19 +1,32 @@
 .custom-input {
-    background-color: #FAFAFA;
-    border: 1px solid #DDDDDD;
+    background-color: var(--input-bg);
+    border: 1px solid var(--input-border);
     border-radius: 8px;
-    color: black;
+    color: var(--input-text);
     font-size: 16px;
     font-weight: bold;
     height: 45px;
     text-align: center;
     line-height: 45px;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
 .amount--small {
     width: 60px;
 }
 
-.amount--medium{
+.amount--medium {
     width: 430px;
+}
+
+.light {
+    --input-bg: #FAFAFA;
+    --input-text: #000000;
+    --input-border: #DDDDDD;
+}
+
+.dark {
+    --input-bg: #1f1f1f;
+    --input-text: #ffffff;
+    --input-border: #444444;
 }

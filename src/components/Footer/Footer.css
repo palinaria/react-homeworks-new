@@ -1,8 +1,9 @@
 .footer {
-    background-image: url("/images/footer_font.png");
+    background-image: url("/images/footer.jpg");
     background-size: cover;
     padding: 100px 120px;
-}
+    color: var(--text-color);
+    background-color: var(--footer-bg);}
 
 .footer .container_up {
     display: flex;
@@ -37,13 +38,13 @@
 }
 
 .line {
-    background-color: #7E828F17;
+    background-color: var(--line-color, rgba(255, 255, 255, 0.1));
     height: 1px;
     margin-bottom: 72px;
 }
 
 .takeaway_text {
-    color: #546285;
+    color: var(--text-muted, #bbb);
     font-size: 16px;
     font-weight: 400;
     letter-spacing: 0.36px;
@@ -52,21 +53,21 @@
     max-width: 246px;
 }
 
-.common_font a{
+.common_font a {
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
     letter-spacing: 0.32px;
-    color: #546285;
+    color: var(--text-muted, #bbb);
 }
 
-.footer__column--uppercase{
+.footer__column--uppercase {
     font-weight: 400;
     font-size: 13px;
     line-height: 20px;
     letter-spacing: 1.5px;
     text-transform: uppercase;
-    color: black;
+    color: var(--text-color);
 }
 
 .container_down {

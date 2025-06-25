@@ -1,10 +1,9 @@
-
 .btn {
     align-items: center;
     background-color: transparent;
-    border: 1px solid #61728333;
+    border: 1px solid var(--button-border);
     border-radius: 6px;
-    color: black;
+    color: var(--button-text);
     display: flex;
     font-size: 16px;
     font-weight: 400;
@@ -13,8 +12,8 @@
     letter-spacing: 0;
     line-height: 20px;
     width: 147px;
+    transition: background-color 0.3s, color 0.3s;
 }
-
 
 .btn--large {
     width: 193px;
@@ -22,30 +21,25 @@
 }
 
 .btn__primary {
-    background-color: #35B8BE;
-    color: white;
-    &:hover {
-        background-color:  #06b8c260;
-    }
-
-    &:disabled {
-        background-color: #c3cccc;
-    }
+    background-color: var(--accent-color);
+    color: var(--button-text);
 }
 
+.btn__primary:hover {
+    background-color: var(--button-primary-hover-bg);
+}
 
+.btn__primary:disabled {
+    background-color: var(--button-disabled-bg);
+    color: var(--button-disabled-text);
+}
 
-.btn__secondary  {
+.btn__secondary {
     background-color: transparent;
-    color:#222;
-    &:hover {
-        background-color: #35B8BE;
-        color: white;
-    }
+    color: var(--button-secondary-text);
 }
 
 .btn__secondary:hover {
-    background-color: #35B8BE;
-    color: white;
-
+    background-color: var(--accent-color);
+    color: var(--button-text);
 }

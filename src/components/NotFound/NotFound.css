@@ -1,0 +1,23 @@
+.not-found {
+    text-align: center;
+    margin-top: 200px;
+    margin-bottom: 200px;
+    color: var(--text-color);
+}
+
+.not-found h1 {
+    font-size: 48px;
+    color: var(--error-color, #ff4c4c);
+    margin-bottom: 30px;
+}
+
+.not-found p {
+    font-size: 20px;
+    margin-bottom: 30px;
+    color: var(--text-color);
+}
+
+.not-found a {
+    color: var(--accent-color, #007bff);
+    text-decoration: underline;
+}
