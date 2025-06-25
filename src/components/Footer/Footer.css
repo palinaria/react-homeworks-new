@@ -38,7 +38,7 @@
 }
 
 .line {
-    background-color: var(--line-color, rgba(255, 255, 255, 0.1)); /* светлая тонкая линия */
+    background-color: var(--line-color, rgba(255, 255, 255, 0.1));
     height: 1px;
     margin-bottom: 72px;
 }
